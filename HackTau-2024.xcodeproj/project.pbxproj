@@ -10,6 +10,13 @@
 		02D359A12B9398DB00EC7F1F /* SwipeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02D359A02B9398DB00EC7F1F /* SwipeView.swift */; };
 		02D359A32B93995B00EC7F1F /* SwipeModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02D359A22B93995B00EC7F1F /* SwipeModel.swift */; };
 		02D359A72B93997600EC7F1F /* SwipeActions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02D359A62B93997600EC7F1F /* SwipeActions.swift */; };
+		02D359A92B939D0300EC7F1F /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 02D359A82B939D0300EC7F1F /* GoogleService-Info.plist */; };
+		02D359AC2B939ED100EC7F1F /* FirebaseAnalytics in Frameworks */ = {isa = PBXBuildFile; productRef = 02D359AB2B939ED100EC7F1F /* FirebaseAnalytics */; };
+		02D359AE2B939ED100EC7F1F /* FirebaseAnalyticsOnDeviceConversion in Frameworks */ = {isa = PBXBuildFile; productRef = 02D359AD2B939ED100EC7F1F /* FirebaseAnalyticsOnDeviceConversion */; };
+		02D359B02B939ED100EC7F1F /* FirebaseAnalyticsSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 02D359AF2B939ED100EC7F1F /* FirebaseAnalyticsSwift */; };
+		02D359B22B939ED100EC7F1F /* FirebaseAnalyticsWithoutAdIdSupport in Frameworks */ = {isa = PBXBuildFile; productRef = 02D359B12B939ED100EC7F1F /* FirebaseAnalyticsWithoutAdIdSupport */; };
+		02D359B42B939ED100EC7F1F /* FirebaseAppCheck in Frameworks */ = {isa = PBXBuildFile; productRef = 02D359B32B939ED100EC7F1F /* FirebaseAppCheck */; };
+		02D359B72B939F4300EC7F1F /* CardSlider in Frameworks */ = {isa = PBXBuildFile; productRef = 02D359B62B939F4300EC7F1F /* CardSlider */; };
 		047990B82B939154006B7E32 /* HackTau_2024App.swift in Sources */ = {isa = PBXBuildFile; fileRef = 047990B72B939154006B7E32 /* HackTau_2024App.swift */; };
 		047990BA2B939154006B7E32 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 047990B92B939154006B7E32 /* ContentView.swift */; };
 		047990BC2B939155006B7E32 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 047990BB2B939155006B7E32 /* Assets.xcassets */; };
@@ -20,6 +27,7 @@
 		02D359A02B9398DB00EC7F1F /* SwipeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwipeView.swift; sourceTree = "<group>"; };
 		02D359A22B93995B00EC7F1F /* SwipeModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwipeModel.swift; sourceTree = "<group>"; };
 		02D359A62B93997600EC7F1F /* SwipeActions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwipeActions.swift; sourceTree = "<group>"; };
+		02D359A82B939D0300EC7F1F /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../../../../Downloads/GoogleService-Info.plist"; sourceTree = "<group>"; };
 		047990B42B939154006B7E32 /* HackTau-2024.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "HackTau-2024.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		047990B72B939154006B7E32 /* HackTau_2024App.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HackTau_2024App.swift; sourceTree = "<group>"; };
 		047990B92B939154006B7E32 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -32,6 +40,12 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				02D359B02B939ED100EC7F1F /* FirebaseAnalyticsSwift in Frameworks */,
+				02D359B72B939F4300EC7F1F /* CardSlider in Frameworks */,
+				02D359AC2B939ED100EC7F1F /* FirebaseAnalytics in Frameworks */,
+				02D359AE2B939ED100EC7F1F /* FirebaseAnalyticsOnDeviceConversion in Frameworks */,
+				02D359B42B939ED100EC7F1F /* FirebaseAppCheck in Frameworks */,
+				02D359B22B939ED100EC7F1F /* FirebaseAnalyticsWithoutAdIdSupport in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -111,6 +125,7 @@
 				047990B72B939154006B7E32 /* HackTau_2024App.swift */,
 				047990B92B939154006B7E32 /* ContentView.swift */,
 				047990BB2B939155006B7E32 /* Assets.xcassets */,
+				02D359A82B939D0300EC7F1F /* GoogleService-Info.plist */,
 				047990BD2B939155006B7E32 /* Preview Content */,
 			);
 			path = "HackTau-2024";
@@ -140,6 +155,14 @@
 			dependencies = (
 			);
 			name = "HackTau-2024";
+			packageProductDependencies = (
+				02D359AB2B939ED100EC7F1F /* FirebaseAnalytics */,
+				02D359AD2B939ED100EC7F1F /* FirebaseAnalyticsOnDeviceConversion */,
+				02D359AF2B939ED100EC7F1F /* FirebaseAnalyticsSwift */,
+				02D359B12B939ED100EC7F1F /* FirebaseAnalyticsWithoutAdIdSupport */,
+				02D359B32B939ED100EC7F1F /* FirebaseAppCheck */,
+				02D359B62B939F4300EC7F1F /* CardSlider */,
+			);
 			productName = "HackTau-2024";
 			productReference = 047990B42B939154006B7E32 /* HackTau-2024.app */;
 			productType = "com.apple.product-type.application";
@@ -168,6 +191,10 @@
 				Base,
 			);
 			mainGroup = 047990AB2B939154006B7E32;
+			packageReferences = (
+				02D359AA2B939ED100EC7F1F /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
+				02D359B52B939F4300EC7F1F /* XCRemoteSwiftPackageReference "cardslider" */,
+			);
 			productRefGroup = 047990B52B939154006B7E32 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -184,6 +211,7 @@
 			files = (
 				047990BF2B939155006B7E32 /* Preview Assets.xcassets in Resources */,
 				047990BC2B939155006B7E32 /* Assets.xcassets in Resources */,
+				02D359A92B939D0300EC7F1F /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -404,6 +432,58 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		02D359AA2B939ED100EC7F1F /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/firebase/firebase-ios-sdk";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 10.21.0;
+			};
+		};
+		02D359B52B939F4300EC7F1F /* XCRemoteSwiftPackageReference "cardslider" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/Ramotion/cardslider.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 0.1.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		02D359AB2B939ED100EC7F1F /* FirebaseAnalytics */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 02D359AA2B939ED100EC7F1F /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseAnalytics;
+		};
+		02D359AD2B939ED100EC7F1F /* FirebaseAnalyticsOnDeviceConversion */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 02D359AA2B939ED100EC7F1F /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseAnalyticsOnDeviceConversion;
+		};
+		02D359AF2B939ED100EC7F1F /* FirebaseAnalyticsSwift */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 02D359AA2B939ED100EC7F1F /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseAnalyticsSwift;
+		};
+		02D359B12B939ED100EC7F1F /* FirebaseAnalyticsWithoutAdIdSupport */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 02D359AA2B939ED100EC7F1F /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseAnalyticsWithoutAdIdSupport;
+		};
+		02D359B32B939ED100EC7F1F /* FirebaseAppCheck */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 02D359AA2B939ED100EC7F1F /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseAppCheck;
+		};
+		02D359B62B939F4300EC7F1F /* CardSlider */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 02D359B52B939F4300EC7F1F /* XCRemoteSwiftPackageReference "cardslider" */;
+			productName = CardSlider;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 047990AC2B939154006B7E32 /* Project object */;
 }
