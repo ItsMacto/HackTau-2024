@@ -7,42 +7,59 @@
 
 import SwiftUI
 
+struct GoogleSignInButton: View {
+    var action: () -> Void
+    
+    var body: some View {
+        HStack {
+            ZStack {
+                RoundedRectangle(cornerRadius: 8)
+                    .fill(.white)
+                    .frame(width: 40, height: 40)
+                Image("GoogleLogo") // Replace with your Google logo image
+                    .resizable()
+                    .aspectRatio(contentMode: .fit)
+                    .frame(width: 20, height: 20)
+            }
+
+            Spacer()
+
+            Text("Sign in with Google")
+                .font(.headline)
+                .foregroundColor(.white)
+
+            Spacer()
+        }
+        .padding(10)
+        .background(Color.blue)
+        .cornerRadius(8)
+        .onTapGesture {
+            action()
+        }
+    }
+}
+
 struct LoginView: View {
-    @State private var username: String = ""
-    @State private var password: String = ""
+    @ObservedObject var viewModel = LoginViewModel()
 
     var body: some View {
         VStack {
-            Image("YourAppLogo") // Replace with your app's logo image
+            Image("your_app_logo") // Replace with your app logo
                 .resizable()
                 .scaledToFit()
-                .frame(width: 150, height: 150)
-
-            Text("Welcome Back")
-                .font(.largeTitle)
-.fontWeight(.semibold)
-
-            TextField("Username", text: $username)
                 .padding()
-                .background(Color.gray.opacity(0.15))
-                .cornerRadius(5)
 
-            SecureField("Password", text: $password)
-                .padding()
-                .background(Color.gray.opacity(0.15))
-                .cornerRadius(5)
+            GoogleSignInButton(action: {
+                viewModel.googleSignIn()
+            })
 
-            Button("Login") {
-                // Handle login logic here (e.g., authenticate with a server)
+            if let errorMessage = viewModel.errorMessage {
+                Text(errorMessage)
+                    .foregroundColor(.red)
             }
-            .foregroundColor(.white)
-            .frame(width: 200, height: 50)
-            .background(Color.blue)
-            .cornerRadius(10)
-
-            Spacer() // Pushes content to the top
         }
         .padding()
+        .navigationTitle("Login")
     }
 }
 
