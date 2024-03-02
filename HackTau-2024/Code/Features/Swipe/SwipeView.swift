@@ -19,9 +19,10 @@ struct SwipeView: View {
     @State var move = 0
     var body: some View {
         ZStack{
-        }
+            
         }
     }
+}
 
 
 #Preview {
