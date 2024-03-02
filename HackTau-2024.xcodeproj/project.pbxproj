@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		02D359A12B9398DB00EC7F1F /* SwipeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02D359A02B9398DB00EC7F1F /* SwipeView.swift */; };
+		02D359A32B93995B00EC7F1F /* SwipeModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02D359A22B93995B00EC7F1F /* SwipeModel.swift */; };
+		02D359A52B93996B00EC7F1F /* SwipeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02D359A42B93996B00EC7F1F /* SwipeViewModel.swift */; };
+		02D359A72B93997600EC7F1F /* SwipeActions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02D359A62B93997600EC7F1F /* SwipeActions.swift */; };
 		047990B82B939154006B7E32 /* HackTau_2024App.swift in Sources */ = {isa = PBXBuildFile; fileRef = 047990B72B939154006B7E32 /* HackTau_2024App.swift */; };
 		047990BA2B939154006B7E32 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 047990B92B939154006B7E32 /* ContentView.swift */; };
 		047990BC2B939155006B7E32 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 047990BB2B939155006B7E32 /* Assets.xcassets */; };
@@ -14,6 +18,10 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		02D359A02B9398DB00EC7F1F /* SwipeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwipeView.swift; sourceTree = "<group>"; };
+		02D359A22B93995B00EC7F1F /* SwipeModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwipeModel.swift; sourceTree = "<group>"; };
+		02D359A42B93996B00EC7F1F /* SwipeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwipeViewModel.swift; sourceTree = "<group>"; };
+		02D359A62B93997600EC7F1F /* SwipeActions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwipeActions.swift; sourceTree = "<group>"; };
 		047990B42B939154006B7E32 /* HackTau-2024.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "HackTau-2024.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		047990B72B939154006B7E32 /* HackTau_2024App.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HackTau_2024App.swift; sourceTree = "<group>"; };
 		047990B92B939154006B7E32 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -32,6 +40,56 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		02D359962B93966900EC7F1F /* Features */ = {
+			isa = PBXGroup;
+			children = (
+				02D359992B93967B00EC7F1F /* Settings */,
+				02D359982B93967400EC7F1F /* Swipe */,
+				02D359972B93966F00EC7F1F /* Home */,
+			);
+			path = Features;
+			sourceTree = "<group>";
+		};
+		02D359972B93966F00EC7F1F /* Home */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Home;
+			sourceTree = "<group>";
+		};
+		02D359982B93967400EC7F1F /* Swipe */ = {
+			isa = PBXGroup;
+			children = (
+				02D359A22B93995B00EC7F1F /* SwipeModel.swift */,
+				02D359A02B9398DB00EC7F1F /* SwipeView.swift */,
+				02D359A42B93996B00EC7F1F /* SwipeViewModel.swift */,
+				02D359A62B93997600EC7F1F /* SwipeActions.swift */,
+			);
+			path = Swipe;
+			sourceTree = "<group>";
+		};
+		02D359992B93967B00EC7F1F /* Settings */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Settings;
+			sourceTree = "<group>";
+		};
+		02D3599A2B93971400EC7F1F /* Code */ = {
+			isa = PBXGroup;
+			children = (
+				02D359962B93966900EC7F1F /* Features */,
+			);
+			path = Code;
+			sourceTree = "<group>";
+		};
+		02D3599B2B93972D00EC7F1F /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
 		047990AB2B939154006B7E32 = {
 			isa = PBXGroup;
 			children = (
@@ -51,6 +109,8 @@
 		047990B62B939154006B7E32 /* HackTau-2024 */ = {
 			isa = PBXGroup;
 			children = (
+				02D3599B2B93972D00EC7F1F /* Resources */,
+				02D3599A2B93971400EC7F1F /* Code */,
 				047990B72B939154006B7E32 /* HackTau_2024App.swift */,
 				047990B92B939154006B7E32 /* ContentView.swift */,
 				047990BB2B939155006B7E32 /* Assets.xcassets */,
@@ -137,6 +197,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				02D359A32B93995B00EC7F1F /* SwipeModel.swift in Sources */,
+				02D359A52B93996B00EC7F1F /* SwipeViewModel.swift in Sources */,
+				02D359A72B93997600EC7F1F /* SwipeActions.swift in Sources */,
+				02D359A12B9398DB00EC7F1F /* SwipeView.swift in Sources */,
 				047990BA2B939154006B7E32 /* ContentView.swift in Sources */,
 				047990B82B939154006B7E32 /* HackTau_2024App.swift in Sources */,
 			);
