@@ -8,10 +8,21 @@
 import SwiftUI
 
 struct SwipeView: View {
-    var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+    struct Restaurants : Identifiable {
+        var id: Int
+        var image: String
+        var name: String
     }
-}
+    @State var restaurants = [
+        Restaurants(id: 0, image: "Image1", name: "McDonalds")
+    ]
+    @State var move = 0
+    var body: some View {
+        ZStack{
+        }
+        }
+    }
+
 
 #Preview {
     SwipeView()
