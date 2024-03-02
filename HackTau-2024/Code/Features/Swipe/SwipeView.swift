@@ -44,14 +44,14 @@ struct SwipeView: View {
                                    }.onEnded { value in
                                        withAnimation {
                                            if value.translation.width < -100 && index < self.restaurants.count - 1 {
-                                               self.restaurants[index].offset = -((UIScreen.main.bounds.width - 40) + 20)
-                                               self.activeCardIndex += 1
-                                           } else if value.translation.width > 100 && index > 0 {
-                                               self.restaurants[index].offset = (UIScreen.main.bounds.width - 40) + 20
-                                               self.activeCardIndex += 1
-                                           } else {
-                                               self.restaurants[index].offset = 0
-                                           }
+                                                       self.restaurants[index].offset = -((UIScreen.main.bounds.width - 40) + 20)
+                                                       self.activeCardIndex += 1
+                                                   } else if value.translation.width > 100 && index > 0 {
+                                                       self.restaurants[index].offset = (UIScreen.main.bounds.width - 40) + 20
+                                                       self.activeCardIndex -= 1 // Change here to decrement the activeCardIndex for left swipe
+                                                   } else {
+                                                       self.restaurants[index].offset = 0
+                                                }
                                        }
                                    })
                            case .failure(let error):
