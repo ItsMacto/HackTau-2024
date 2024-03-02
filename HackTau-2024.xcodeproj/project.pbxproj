@@ -65,7 +65,6 @@
 		02D359C72B93ABA700EC7F1F /* LoginViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewModel.swift; sourceTree = "<group>"; };
 		02D359C92B93ABA700EC7F1F /* LoginView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
 		02D35A0A2B93BF5300EC7F1F /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
-		02D35A0C2B93C0A900EC7F1F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		047990B42B939154006B7E32 /* HackTau-2024.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "HackTau-2024.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		047990B72B939154006B7E32 /* HackTau_2024App.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HackTau_2024App.swift; sourceTree = "<group>"; };
 		047990B92B939154006B7E32 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -75,7 +74,6 @@
 		047990C82B93A3F1006B7E32 /* JoinCircleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JoinCircleView.swift; sourceTree = "<group>"; };
 		047990CD2B93A437006B7E32 /* CreateCircleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateCircleView.swift; sourceTree = "<group>"; };
 		047990CF2B93A4AB006B7E32 /* MapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapView.swift; sourceTree = "<group>"; };
-		047990D52B93C835006B7E32 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -219,7 +217,6 @@
 		047990B62B939154006B7E32 /* HackTau-2024 */ = {
 			isa = PBXGroup;
 			children = (
-				047990D52B93C835006B7E32 /* Info.plist */,
 				02D3599B2B93972D00EC7F1F /* Resources */,
 				02D3599A2B93971400EC7F1F /* Code */,
 				047990B72B939154006B7E32 /* HackTau_2024App.swift */,
