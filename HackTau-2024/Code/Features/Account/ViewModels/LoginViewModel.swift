@@ -39,6 +39,7 @@ class LoginViewModel: ObservableObject {
                 }
 
                 guard let firebaseUser = authResult?.user else { return }
+                print(firebaseUser.email ?? "NO EMAIL FOUND")
 //                self.user = User(id: firebaseUser.uid, email: firebaseUser.email!, displayName: firebaseUser.displayName)
                 self.isLoggedIn = true
             }
