@@ -14,6 +14,10 @@
 		047990BA2B939154006B7E32 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 047990B92B939154006B7E32 /* ContentView.swift */; };
 		047990BC2B939155006B7E32 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 047990BB2B939155006B7E32 /* Assets.xcassets */; };
 		047990BF2B939155006B7E32 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 047990BE2B939155006B7E32 /* Preview Assets.xcassets */; };
+		047990C72B93A3B9006B7E32 /* CircleMainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 047990C62B93A3B9006B7E32 /* CircleMainView.swift */; };
+		047990C92B93A3F1006B7E32 /* JoinCircleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 047990C82B93A3F1006B7E32 /* JoinCircleView.swift */; };
+		047990CE2B93A437006B7E32 /* CreateCircleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 047990CD2B93A437006B7E32 /* CreateCircleView.swift */; };
+		047990D02B93A4AB006B7E32 /* MapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 047990CF2B93A4AB006B7E32 /* MapView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -25,6 +29,10 @@
 		047990B92B939154006B7E32 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		047990BB2B939155006B7E32 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		047990BE2B939155006B7E32 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		047990C62B93A3B9006B7E32 /* CircleMainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CircleMainView.swift; sourceTree = "<group>"; };
+		047990C82B93A3F1006B7E32 /* JoinCircleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JoinCircleView.swift; sourceTree = "<group>"; };
+		047990CD2B93A437006B7E32 /* CreateCircleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateCircleView.swift; sourceTree = "<group>"; };
+		047990CF2B93A4AB006B7E32 /* MapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -41,6 +49,7 @@
 		02D359962B93966900EC7F1F /* Features */ = {
 			isa = PBXGroup;
 			children = (
+				047990C52B939FD5006B7E32 /* Circle */,
 				02D359992B93967B00EC7F1F /* Settings */,
 				02D359982B93967400EC7F1F /* Swipe */,
 				02D359972B93966F00EC7F1F /* Home */,
@@ -124,6 +133,17 @@
 			path = "Preview Content";
 			sourceTree = "<group>";
 		};
+		047990C52B939FD5006B7E32 /* Circle */ = {
+			isa = PBXGroup;
+			children = (
+				047990C62B93A3B9006B7E32 /* CircleMainView.swift */,
+				047990C82B93A3F1006B7E32 /* JoinCircleView.swift */,
+				047990CD2B93A437006B7E32 /* CreateCircleView.swift */,
+				047990CF2B93A4AB006B7E32 /* MapView.swift */,
+			);
+			path = Circle;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -196,9 +216,13 @@
 			files = (
 				02D359A32B93995B00EC7F1F /* SwipeModel.swift in Sources */,
 				02D359A72B93997600EC7F1F /* SwipeActions.swift in Sources */,
+				047990CE2B93A437006B7E32 /* CreateCircleView.swift in Sources */,
+				047990C92B93A3F1006B7E32 /* JoinCircleView.swift in Sources */,
 				02D359A12B9398DB00EC7F1F /* SwipeView.swift in Sources */,
 				047990BA2B939154006B7E32 /* ContentView.swift in Sources */,
 				047990B82B939154006B7E32 /* HackTau_2024App.swift in Sources */,
+				047990D02B93A4AB006B7E32 /* MapView.swift in Sources */,
+				047990C72B93A3B9006B7E32 /* CircleMainView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
