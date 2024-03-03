@@ -20,33 +20,40 @@ struct SwipeView: View {
   
   var body: some View{
       VStack{
-          Color(.primaryAccent)
           //Top Stack
-          HStack(spacing: 0){
-              Button(action:{}) {
-                  Image("Settings")
+          ZStack{
+              Color("primaryAccentColor")
+                  .frame(width:400, height: 200)
+                  .offset(y:-75)
+              HStack(spacing: 0){
+                  Button(action:{}) {
+                      Image("Settings")
+                          .resizable()
+                          .shadow(radius: 5)
+                          .frame(width: 60, height: 60)
+                          .offset(y: -20)
+                          .offset(x: 20)
+                  }
+                  Spacer()
+                  
+                  Image("MunchLogo")
                       .resizable()
                       .shadow(radius: 5)
-                      .frame(width: 60, height: 60)
-                      .offset(y: -20)
-              }
-              Spacer()
-              
-              Image("MunchLogo")
-                  .resizable()
-                  .shadow(radius: 5)
-                  .frame(width:100, height: 100)
-                  .offset(y: -10)
-                  .padding(.bottom)
-              Spacer()
-              Button(action: {}){
-                  Image("top_left_profile")
-                      .resizable()
-                      .shadow(radius: 5)
-                      .frame(width: 60, height: 60)
+                      .frame(width:100, height: 100)
                       .offset(y: -10)
-              }.padding(.bottom)
+                      .padding(.bottom)
+                  Spacer()
+                  Button(action: {}){
+                      Image("top_left_profile")
+                          .resizable()
+                          .shadow(radius: 5)
+                          .frame(width: 60, height: 60)
+                          .offset(y: -10)
+                          .offset(x: -25)
+                  }.padding(.bottom)
+              }
           }
+          
           .padding(.horizontal)
           Spacer()
           //Middle Stack
