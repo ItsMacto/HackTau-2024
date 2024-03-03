@@ -43,6 +43,7 @@ struct JoinCircleView: View {
                     .background(Color.white.opacity(0.7))
                     .cornerRadius(15)
                     .padding(.horizontal)
+                    .shadow(radius: 5)
 
                 if !didJoin {
                     Button("Join Circle") {
@@ -52,6 +53,7 @@ struct JoinCircleView: View {
                     .background(Color.secondaryBackground)
                     .foregroundColor(.white)
                     .cornerRadius(10)
+                    .shadow(radius: 5)
                 } else {
                     Text("Circle Members")
                         .font(.headline)

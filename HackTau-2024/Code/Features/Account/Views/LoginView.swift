@@ -44,7 +44,7 @@ struct LoginView: View {
                     .font(.custom("Fredoka One", size: 100))
                     .foregroundColor(.primaryAccent.opacity(1))
                     .bold()
-                
+                    .shadow(radius: 5)
                 Image("MunchLogo")
                     .resizable()
                     .scaledToFit()
@@ -55,6 +55,7 @@ struct LoginView: View {
                     viewModel.googleSignIn()
                 })
                 .padding(.horizontal)
+                .shadow(radius: /*@START_MENU_TOKEN@*/10/*@END_MENU_TOKEN@*/)
                 
                 if let errorMessage = viewModel.errorMessage {
                     Text(errorMessage)
