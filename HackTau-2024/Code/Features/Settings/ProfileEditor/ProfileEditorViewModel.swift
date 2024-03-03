@@ -26,7 +26,7 @@ class ProfileEditorViewModel: ObservableObject {
         // For example, you might call a service to update the user profile on the server
         print("Saving changes: First Name - \(userProfile.first_name), Phone Number - \(userProfile.phone_number)")
     }
-
+// WTF IS THIS JOHN
     private func setupSubscribers() {
     // Optionally, add any subscribers to respond to changes in the data
         $userProfile

@@ -8,15 +8,16 @@
 import SwiftUI
 
 struct ContentView: View {
-    @State var isLoggedIn = false
-    
-    var body: some View {
-        if !isLoggedIn {
-            LoginView(isLoggedIn: $isLoggedIn)
-        } else {
-            CircleMainView()
+    @State private var isLoggedIn = false
+
+        var body: some View {
+            if isLoggedIn {
+                CircleMainView()
+            } else {
+                LoginView(isLoggedIn: $isLoggedIn)
+                    .environmentObject(AuthenticationViewModel()) // Inject AuthenticationViewModel
+            }
         }
-    }
 }
     
 #Preview {
