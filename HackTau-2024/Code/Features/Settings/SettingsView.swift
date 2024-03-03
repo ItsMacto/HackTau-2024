@@ -8,9 +8,35 @@
 import Foundation
 import SwiftUI
 
+struct SignOutConfirmationSheet: View {
+    @Environment(\.presentationMode) var presentationMode
+    @EnvironmentObject var authenticationViewModel: AuthenticationViewModel
+
+    var body: some View {
+        VStack {
+            Text("Are you sure you want to sign out?")
+                .padding()
+            Button("Sign Out") {
+                authenticationViewModel.signOut { result in
+                    if case .success = result {
+                        presentationMode.wrappedValue.dismiss()
+                    } else if case .failure(let error) = result {
+                        print("Failed to sign out: \(error)")
+                    }
+                }
+            }
+            .foregroundColor(.red)
+            .padding()
+        }
+    }
+}
+
 struct SettingsView: View {
     @ObservedObject var settingsViewModel: SettingsViewModel
-
+    @EnvironmentObject var authenticationViewModel: AuthenticationViewModel // Inject AuthenticationViewModel
+    @State private var showingSignOutConfirmation = false
+    
+    
     var body: some View {
         NavigationView {
             Form {
@@ -23,10 +49,20 @@ struct SettingsView: View {
                         Text("Edit Profile")
                     }
                     .foregroundColor(.blue)
+                    Button(action: {
+                        showingSignOutConfirmation = true
+                    }) {
+                        Text("Sign Out")
+                            .foregroundColor(.red)
+                    }
                 }
+                
             }
             .navigationTitle("Settings")
         }
+        .sheet(isPresented: $showingSignOutConfirmation, content: {
+            SignOutConfirmationSheet()
+        })
     }
 }
 
