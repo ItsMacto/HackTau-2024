@@ -1,4 +1,6 @@
 import SwiftUI
+import Firebase
+import FirebaseFirestore
 
 struct RankedRestaurant: Identifiable {
     let id = UUID()
@@ -60,6 +62,51 @@ struct RankingView: View {
                 }
         
     }
+    
+    func observeDocument() {
+        let db = Firestore.firestore()
+        var listener: ListenerRegistration?
+        
+        let docRef = db.collection("circles").document(self.circleCode.lowercased())
+
+        listener = docRef.addSnapshotListener { documentSnapshot, error in
+            guard let document = documentSnapshot else {
+                print("Error fetching document: \(error!)")
+                return
+            }
+            
+            guard let data = document.data() else {
+                print("Document data was empty.")
+                return
+            }
+            
+            guard let restaurants = data["restaurants"] as? [[String: Any]] else {
+                return
+            }
+            
+            guard let ranked = data["ranked"] as? [[String: Any]] else {
+                return
+            }
+            
+            let sortedRanked = ranked.sorted { (firstDict, secondDict) -> Bool in
+                guard let firstRank = firstDict["rating"] as? Int, let secondRank = secondDict["rating"] as? Int else {
+                    return false
+                }
+                return firstRank < secondRank
+            }
+            
+            let rankedResturants = sortedRanked.map { resturant in
+                let id = reasturant["id"]
+                let resturant = restaurants.first(where: { $0["id"] as? String == id })
+                
+                return RankedRestaurant(rank: 0, image: resturant["photo"], name: resturant["displayName"])
+            }
+
+
+            self.rankedRestaurants = rankedResturants
+        }
+    }
+
     
 }
 
