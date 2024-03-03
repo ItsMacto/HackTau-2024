@@ -21,5 +21,5 @@ struct ContentView: View {
 
 #Preview {
     //ContentView()
-    SwipeView()
+    //SwipeView()
 }
