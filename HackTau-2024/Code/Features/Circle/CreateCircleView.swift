@@ -17,14 +17,13 @@ struct CreateCircleView: View {
     @StateObject private var locationManager = LocationManager()
 
     @State private var members = ["Alice", "Bob", "Charlie"] // Example list of members
-
+    
     var body: some View {
-        
         ScrollView {
             VStack(spacing: 20){
                 HStack {
                     Text("Circle: \(circleCode)")
-                        .font(.custom("FredokaOne-Regular", size: 30))
+                        .font(.custom("Fredoka One", size: 30))
                         
                         .padding()
                         .background(Color.secondaryBackground)
