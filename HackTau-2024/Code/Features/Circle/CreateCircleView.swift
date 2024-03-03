@@ -9,12 +9,13 @@ import SwiftUI
 import MapKit
 import CoreLocation
 import Firebase
-
+import FirebaseFunctions
+import FirebaseAuth
+import FirebaseFirestore
+import FirebaseFirestoreSwift
 
 struct CreateCircleView: View {
-    let functions = Functions.functions()
-
-    @State private var circleCode: String = "" //TODO: Placeholder for dynamically generated code
+    @State private var circleCode: String = "00000" //TODO: Placeholder for dynamically generated code
     @State private var searchText = ""
     @State private var region = MKCoordinateRegion()
     @State private var showingCity = "Loading..."
@@ -101,6 +102,70 @@ struct CreateCircleView: View {
         }
         .background(Gradient(colors: [.secondaryAccent,.primaryAccent]).opacity(0.7))
     }
+    
+    private func createCircle() {
+            let functions = Functions.functions()
+        
+           guard let userID = Auth.auth().currentUser?.uid else {
+               print("User not logged in")
+               return
+           }
+           
+            print("USER ID: \(userID)")
+        let data = ["userId": userID] as [String: String]
+        functions.httpsCallable("createCircle").call(data) { result, error in
+               if let error = error as NSError? {
+                   print("Error calling createCircle: \(error)")
+               } else if let data = result?.data as? [String: Any], // Cast `result?.data` to a dictionary
+                         let circleId = data["circleId"] as? String { // Now you can safely subscript
+                          print("CIRCLE ID: \(circleId)")
+                          DispatchQueue.main.async {
+                              self.circleCode = circleId
+                              observeDocument();
+                          }
+                      } else {
+                          // Handle the case where `circleId` is not found or `result?.data` cannot be cast to `[String: Any]`
+                          print("circleId not found or data is not a dictionary")
+                      }
+           }
+       }
+    
+    func observeDocument() {
+        let db = Firestore.firestore()
+        var listener: ListenerRegistration?
+        
+        let docRef = db.collection("circles").document(self.circleCode)
+
+        listener = docRef.addSnapshotListener { documentSnapshot, error in
+            guard let document = documentSnapshot else {
+                print("Error fetching document: \(error!)")
+                return
+            }
+            
+            guard let data = document.data() else {
+                print("Document data was empty.")
+                return
+            }
+            print("Current data: \(data)")
+            
+            guard let members = data["members"] as? [[String: Any]] else {
+                return
+            }
+            
+            let membersUnwrapped = members.map { memberDict in
+                guard let username = memberDict["username"] as? String else {
+                    // Handle the case where a member doesn't have a username
+                    return "Unknown Username"
+                }
+                
+                return username
+            }
+
+
+            self.members = membersUnwrapped
+        }
+    }
+
 
     private func fetchCurrentLocation() {
         locationManager.onLocationUpdate = { location in
@@ -189,22 +254,4 @@ struct ShareSheet: UIViewControllerRepresentable {
     
     func updateUIViewController(_ uiViewController: UIActivityViewController, context: Context) {}
 }
-
-
-private func createCircle() {
-       guard let userID = Auth.auth().currentUser?.uid else {
-           print("User not logged in")
-           return
-       }
-       
-       functions.httpsCallable("createCircle").call(["userId": userID]) { result, error in
-           if let error = error as NSError? {
-               print("Error calling createCircle: \(error.localizedDescription)")
-           } else if let circleId = result?.data as? String {
-               DispatchQueue.main.async {
-                   self.circleCode = circleId
-               }
-           }
-       }
-   }
 
