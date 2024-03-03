@@ -27,7 +27,7 @@ struct SplashScreenView: View {
                     .opacity(opacity)
             }
             .frame(maxWidth: .infinity, maxHeight: .infinity)
-            .background(Color(red: 255/255, green: 87/255, blue: 51/255)) // Custom background color
+            .background(LinearGradient(gradient: Gradient(colors: [.primaryProduct, .secondaryProduct]), startPoint: .top, endPoint: .bottom))
             .edgesIgnoringSafeArea(.all)
             .onAppear() {
                 withAnimation(.easeIn(duration: 4)) {
