@@ -25,12 +25,7 @@ struct HackTau_2024App: App {
     
     var body: some Scene {
         WindowGroup {
-<<<<<<< HEAD
-            //ContentView()
-            SwipeView()
-=======
-            SplashScreenView()
->>>>>>> fd406a8054cd8b7200e8a7649b7a074ef5ce0315
+            ContentView()
         }
     }
 }
