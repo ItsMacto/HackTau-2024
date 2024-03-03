@@ -144,22 +144,20 @@ struct CardView: View {
              .frame(width: 360, height: 360)
              .cornerRadius(10)
              .padding(.bottom)
-             //.offset(y: 10)
+            // .offset(x: 17)
         //LinearGradient(gradient: restaurantGradient, startPoint: .top, endPoint: .bottom)
          VStack(){
-             VStack(){
-                 Text(restaurant.name)
-                     .font(.largeTitle)
-                     .fontWeight(.bold)
-                     .padding(.bottom, 100)
-                     .foregroundColor(.white)
-                     .offset(y: 320)
-                 RatingView(rating: restaurant.rating)
-                     .padding(.bottom, 100) // Adjust the padding as needed
-                     .offset(y: -140)
-                     .offset(x: -20)
-             }
-             Spacer()
+                     Text(restaurant.name)
+                         .font(.largeTitle)
+                         .fontWeight(.bold)
+                         .foregroundColor(.white)
+                         .frame(maxWidth: 360, alignment: .leading)
+//                         .offset(y:280)
+                
+                RatingView(rating: restaurant.rating)
+                 .fontWeight(.bold)
+                 .foregroundColor(.white)
+                 .frame(maxWidth: 360, alignment: .leading)
          }
          HStack{
              Image("like")
