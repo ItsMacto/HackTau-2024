@@ -47,7 +47,7 @@ struct SwipeView: View {
                       Image("top_left_profile")
                           .resizable()
                           .shadow(radius: 5)
-                          .frame(width: 60, height: 60)
+                          .frame(width: 55, height: 55)
                           .offset(y: -10)
                           .offset(x: -25)
                   }.padding(.bottom)
