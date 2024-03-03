@@ -17,6 +17,7 @@ struct CreateCircleView: View {
     @StateObject private var locationManager = LocationManager()
 
     @State private var members = ["Alice", "Bob", "Charlie"] // TODO: static list of members
+    @State private var showingShareSheet = false
     
     var body: some View {
         ScrollView {
@@ -29,10 +30,9 @@ struct CreateCircleView: View {
                         .background(Color.secondaryBackground)
                         .foregroundColor(.primaryBackground)
                         .cornerRadius(10)
-//                        .bold()
 
                     Button(action: {
-                        // Implement share logic here, e.g., share sheet
+                        self.showingShareSheet = true
                     }) {
                         Image(systemName: "square.and.arrow.up")
                             .resizable()
@@ -45,6 +45,9 @@ struct CreateCircleView: View {
                     .background(Color.secondaryBackground)
                     .foregroundColor(.white)
                     .cornerRadius(10)
+                    .sheet(isPresented: $showingShareSheet) {
+                                ShareSheet(items: ["Join our circle: \(self.circleCode)"])
+                            }
                 }
             
                 Text("Showing restaurants for: \(showingCity)")
@@ -167,5 +170,17 @@ struct CreateCircleView_Previews: PreviewProvider {
         CreateCircleView()
     }
 }
+
+
+struct ShareSheet: UIViewControllerRepresentable {
+    var items: [Any]
     
+    func makeUIViewController(context: Context) -> UIActivityViewController {
+        let controller = UIActivityViewController(activityItems: items, applicationActivities: nil)
+        return controller
+    }
+    
+    func updateUIViewController(_ uiViewController: UIActivityViewController, context: Context) {}
+}
+
 
