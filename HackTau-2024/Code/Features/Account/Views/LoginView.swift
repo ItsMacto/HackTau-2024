@@ -67,9 +67,9 @@ struct LoginView: View {
             .padding()
         }
         .navigationTitle("Login")
-        .navigationDestination(isPresented: $viewModel.isLoggedIn) {
-                CircleMainView()
-            }
+        .sheet(isPresented: $viewModel.navigateToCircleMainView) {
+                        CircleMainView()
+        }
     }
 }
 

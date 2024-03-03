@@ -14,6 +14,7 @@ class LoginViewModel: ObservableObject {
     @Published var isLoggedIn = false
     @Published var user: User?
     @Published var errorMessage: String?
+    @Published var navigateToCircleMainView = false
 
     func googleSignIn() {
         guard let clientID = FirebaseApp.app()?.options.clientID else { return }
@@ -42,6 +43,7 @@ class LoginViewModel: ObservableObject {
                 print(firebaseUser.email ?? "NO EMAIL FOUND")
 //                self.user = User(id: firebaseUser.uid, email: firebaseUser.email!, displayName: firebaseUser.displayName)
                 self.isLoggedIn = true
+                self.navigateToCircleMainView = true // Trigger navigation to CircleMainView
             }
         }
     }
