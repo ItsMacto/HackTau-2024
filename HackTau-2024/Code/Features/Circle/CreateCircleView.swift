@@ -199,7 +199,7 @@ struct CreateCircleView: View {
                 return
             }
             
-            guard let status = data["status"] as? string else {
+            guard let status = data["status"] as? String else {
                 return
             }
             
