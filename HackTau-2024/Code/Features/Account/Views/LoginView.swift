@@ -73,6 +73,9 @@ struct LoginView: View {
         .onChange(of: viewModel.isLoggedIn) { oldValue, newValue in
                     self.isLoggedIn = newValue
         }
+        .onAppear {
+            viewModel.checkUserAuthentication() // Check authentication status when view appears
+        }
     }
 }
 
