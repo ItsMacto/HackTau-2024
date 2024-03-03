@@ -13,7 +13,7 @@ struct CircleMainView: View {
         NavigationView {
             ZStack {
                 LinearGradient(gradient: Gradient(colors: [.secondaryAccent, .primaryAccent]), startPoint: .top, endPoint: .bottom)
-                    .opacity(0.5)
+                    .opacity(0.7)
                     .edgesIgnoringSafeArea(.all)
                 
                 VStack(spacing: 20) {

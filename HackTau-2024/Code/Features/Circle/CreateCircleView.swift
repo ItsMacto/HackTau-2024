@@ -50,8 +50,10 @@ struct CreateCircleView: View {
                             }
                 }
             
-                Text("Showing restaurants for: \(showingCity)")
-                    .foregroundColor(Color.primaryBackground)
+                Text("Showing restaurants for: ")
+                    .foregroundColor(Color.primaryBackground) +
+                Text(showingCity)
+                    .foregroundColor(.primaryProduct).bold()
                 
                 
                 HStack {
@@ -92,7 +94,7 @@ struct CreateCircleView: View {
         .onAppear {
             fetchCurrentLocation()
         }
-        .background(Gradient(colors: [.secondaryAccent,.primaryAccent]).opacity(0.5))
+        .background(Gradient(colors: [.secondaryAccent,.primaryAccent]).opacity(0.7))
     }
 
     private func fetchCurrentLocation() {
