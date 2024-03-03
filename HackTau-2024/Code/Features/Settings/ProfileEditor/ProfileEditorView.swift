@@ -20,7 +20,7 @@ struct ProfileEditorView: View {
         NavigationView {
             Form {
                 // Profile Picture Section
-                Section(header: Text("Profile Picture")) { // Removed the trailing closure from here
+                Section(header: Text("Profile Picture")) {
                     HStack {
                         if let profilePicture = viewModel.userProfile.profilePicture {
                             Image(uiImage: profilePicture)
@@ -32,34 +32,26 @@ struct ProfileEditorView: View {
                                     Circle()
                                         .stroke(Color.white, lineWidth: 2)
                                 )
-                        } else {
-                            GrayProfileIcon()
-                                .frame(width: 80, height: 80)
                         }
-
+                        
                         Spacer()
-
-                        Button(action: {
-                            isImagePickerPresented = true
-                        }) {
-                            Text("Change Profile Picture")
-                                .foregroundColor(.blue)
-                        }
-                        .sheet(isPresented: $isImagePickerPresented) {
-                            ImagePickerView(selectedImage: $selectedImage, isImagePickerPresented: $isImagePickerPresented, sourceType: .photoLibrary)
-                        }
+                        
+                        Text("Edit Profile Picture")
+                            .foregroundColor(.blue)
+                            .onTapGesture {
+                                isImagePickerPresented = true
+                            }
+                            .sheet(isPresented: $isImagePickerPresented) {
+                                ImagePickerView(selectedImage: $selectedImage, isImagePickerPresented: $isImagePickerPresented, sourceType: .photoLibrary)
+                            }
                     }
                 }
-                
-                // Profile Information Section
-                Section(header: Text("Profile Information")) { // Removed the trailing closure from here
+                Section(header: Text("Profile Information")) {
                     TextField("First Name", text: $viewModel.userProfile.first_name)
                     TextField("Last Name", text: $viewModel.userProfile.last_name)
                     TextField("Phone Number", text: $viewModel.userProfile.phone_number)
                     TextField("Username", text: $viewModel.userProfile.username)
                 }
-                
-                // Save Changes Button Section
                 Section {
                     Button(action: {
                         viewModel.saveChanges()
@@ -70,12 +62,12 @@ struct ProfileEditorView: View {
                     .foregroundColor(isSaveButtonClicked ? .gray : .blue)
                     .disabled(isSaveButtonClicked)
                 }
+                
             }
             .navigationTitle("Edit Profile")
         }
     }
 }
-
 
 struct ProfileEditorView_Previews: PreviewProvider {
     static var previews: some View {
