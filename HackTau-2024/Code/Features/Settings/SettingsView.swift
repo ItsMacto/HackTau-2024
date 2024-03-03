@@ -33,7 +33,7 @@ struct SignOutConfirmationSheet: View {
 
 struct SettingsView: View {
     @ObservedObject var settingsViewModel: SettingsViewModel = SettingsViewModel()
-    @StateObject var authenticationViewModel: AuthenticationViewModel = AuthenticationViewModel()
+    @ObservedObject var authenticationViewModel: AuthenticationViewModel = AuthenticationViewModel()
     @State private var showingSignOutConfirmation = false
     
     

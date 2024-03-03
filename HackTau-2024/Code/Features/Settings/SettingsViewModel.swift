@@ -9,11 +9,15 @@ import Foundation
 import Combine
 
 class SettingsViewModel: ObservableObject {
-    @Published var userProfile: UserProfile = UserProfile()
+    @Published var userProfile: UserProfile = UserProfile(first_name: "John", last_name: "Severson", phone_number: "845-500-0549", username: "MunchMaster69")
     @Published var notificationsEnabled: Bool = false
 
     private var cancellables: Set<AnyCancellable> = []
 
+    init() {
+        setupSubscribers()
+    }
+    
     init(userProfile: UserProfile) {
         self.userProfile = userProfile
 
