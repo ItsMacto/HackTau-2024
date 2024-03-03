@@ -19,8 +19,9 @@ struct SwipeView: View {
     Restaurant(id: 1, image: "https://upload.wikimedia.org/wikipedia/commons/thumb/c/cc/Burger_King_2020.svg/1280px-Burger_King_2020.svg.png", name: "Burger King", rating: 4),
     Restaurant(id: 2, image: "https://upload.wikimedia.org/wikipedia/en/thumb/8/85/Panda_Express_logo.svg/1920px-Panda_Express_logo.svg.png", name: "Panda Express", rating: 5)
   ]
+
   
-  var body: some View{
+    var body: some View{
       VStack{
           //Top Stack
           ZStack{
@@ -46,7 +47,16 @@ struct SwipeView: View {
                       .offset(y: -10)
                       .padding(.bottom)
                   Spacer()
-                  Button(action: {}){
+                  NavigationLink(destination: SettingsView(settingsViewModel: SettingsViewModel())) {
+                          Image(systemName: "gearshape.fill")
+                              .resizable()
+                              .shadow(radius: 5)
+                              .frame(width: 60, height: 60)
+                              .offset(y: -20)
+                              .offset(x: 20)
+                              .foregroundColor(.secondaryBackground)
+                      }
+                }
                       Image(systemName: "person.crop.circle.fill")
                           .resizable()
                           .shadow(radius: 5)
