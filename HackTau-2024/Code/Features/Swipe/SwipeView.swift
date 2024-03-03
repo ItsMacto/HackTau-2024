@@ -111,7 +111,8 @@ struct SwipeView: View {
                 }
             }
             .padding(.top)
-            .background(.secondaryProduct)
+            .background(LinearGradient(gradient: Gradient(colors: [.secondaryProduct,.secondaryProduct, .primaryBackground]), startPoint: .top, endPoint: .bottom)
+                .opacity(1))
         }}
           func likeRestaurant(_ restaurant: Restaurant) {
               if let index = restaurants.firstIndex(where: { $0.id == restaurant.id }) {
