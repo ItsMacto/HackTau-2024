@@ -43,23 +43,33 @@ struct LoginView: View {
     @ObservedObject var viewModel = LoginViewModel()
 
     var body: some View {
-        VStack {
-            Image("your_app_logo") // Replace with your app logo
-                .resizable()
-                .scaledToFit()
-                .padding()
+        NavigationStack {
+            VStack {
+                Image("your_app_logo") // Replace with your app logo
+                    .resizable()
+                    .scaledToFit()
+                    .padding()
+                
+                GoogleSignInButton(action: {
+                    viewModel.googleSignIn()
+                })
+                
+                if let errorMessage = viewModel.errorMessage {
+                    Text(errorMessage)
+                        .foregroundColor(.red)
+                }
+                if viewModel.isLoggedIn {
+                    Text("LOGGED IN")
+                        .foregroundColor(.red)
+                }
 
-            GoogleSignInButton(action: {
-                viewModel.googleSignIn()
-            })
-
-            if let errorMessage = viewModel.errorMessage {
-                Text(errorMessage)
-                    .foregroundColor(.red)
             }
+            .padding()
         }
-        .padding()
         .navigationTitle("Login")
+        .navigationDestination(isPresented: $viewModel.isLoggedIn) {
+                CircleMainView()
+            }
     }
 }
 
