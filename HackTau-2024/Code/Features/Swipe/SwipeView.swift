@@ -1,142 +1,168 @@
 import SwiftUI
 
 struct SwipeView: View {
-    struct Restaurant: Identifiable {
-        var id: Int
-        var image: String
-        var name: String
-        var offset: CGFloat = 0
-        var x: CGFloat = 0.0
-        var y: CGFloat = 0.0
-        var degree: Double = 0.0
-    }
-    
-    @State var restaurants = [
-        Restaurant(id: 0, image: "https://upload.wikimedia.org/wikipedia/commons/2/25/New-McDonald-HU-lg_%2843261171540%29.jpg", name: "McDonalds"),
-        Restaurant(id: 1, image: "https://upload.wikimedia.org/wikipedia/commons/thumb/c/cc/Burger_King_2020.svg/1280px-Burger_King_2020.svg.png", name: "Burger King"),
-        Restaurant(id: 2, image: "https://upload.wikimedia.org/wikipedia/en/thumb/8/85/Panda_Express_logo.svg/1920px-Panda_Express_logo.svg.png", name: "Panda Express")
-    ]
-    
-    var body: some View{
-        VStack{
-            //Top Stack
-            HStack(spacing: 0){
-                Button(action: {}){
-                    Image("Settings")
-                        .resizable()
-                        .frame(width: 60, height: 60)
-                }.padding(.bottom, 80)
-                Spacer()
-                Button(action: {}){
-                    Image("top_left_profile")
-                        .resizable()
-                        .frame(width: 60, height: 60)
-                }.padding(.bottom, 80)
-            }
-            .padding(.horizontal)
-            
-            Spacer()
-            //Middle Stack
-            ZStack {
-                ForEach(restaurants.reversed()) { restaurant in
-                    CardView(restaurant: restaurant)
-                }
-            }
-            //button stack
-            HStack{
-                Button(action: {}){
-                    Image("dismiss_circle")
-                        .resizable()
-                        .aspectRatio(contentMode: .fit)
-                        .shadow(radius: 5)
-                        .frame(height: 90)
-                }
+   struct Restaurant: Identifiable {
+       var id: Int
+       var image: String
+       var name: String
+       var offset: CGFloat = 0
+       var x: CGFloat = 0.0
+       var y: CGFloat = 0.0
+       var degree: Double = 0.0
+   }
+    @State private var gestureEnabled = true
 
-                .padding(.bottom, 150)
-                Button(action: {}){
-                    Image("like_circle")
-                        .resizable()
-                        .aspectRatio(contentMode: .fit)
-                        .shadow(radius: 5)
-                        .frame(height: 90)
-                }
-                .padding(.bottom, 150)
-            }//Like and dislike button
+    func likeAction() {
+        withAnimation {
+            gestureEnabled = false
+            if let lastRestaurantIndex = restaurants.indices.last {
+                restaurants[lastRestaurantIndex].x = 500
+                restaurants[lastRestaurantIndex].degree = 12
+            }
         }
-        .padding(.top)
-        .background(.primaryBackground)
     }
+
+    func dismissAction() {
+        withAnimation {
+            gestureEnabled = false
+            if let lastRestaurantIndex = restaurants.indices.last {
+                restaurants[lastRestaurantIndex].x = -500
+                restaurants[lastRestaurantIndex].degree = -12
+            }
+        }
+    }
+   @State var restaurants = [
+       Restaurant(id: 0, image: "https://upload.wikimedia.org/wikipedia/commons/2/25/New-McDonald-HU-lg_%2843261171540%29.jpg", name: "McDonalds"),
+       Restaurant(id: 1, image: "https://upload.wikimedia.org/wikipedia/commons/thumb/c/cc/Burger_King_2020.svg/1280px-Burger_King_2020.svg.png", name: "Burger King"),
+       Restaurant(id: 2, image: "https://upload.wikimedia.org/wikipedia/en/thumb/8/85/Panda_Express_logo.svg/1920px-Panda_Express_logo.svg.png", name: "Panda Express")
+   ]
+   
+   var body: some View{
+       VStack{
+           //Top Stack
+           HStack(spacing: 0){
+               Button(action:{}) {
+                   Image("Settings")
+                       .resizable()
+                       .shadow(radius: 5)
+                       .frame(width: 60, height: 60)
+               }
+               .padding(.bottom)
+               Spacer()
+               Button(action: {}){
+                   Image("top_left_profile")
+                       .resizable()
+                       .shadow(radius: 5)
+                       .frame(width: 60, height: 60)
+               }.padding(.bottom)
+           }
+           .padding(.horizontal)
+           
+           Spacer()
+           //Middle Stack
+           ZStack {
+               ForEach(restaurants.reversed()) { restaurant in
+                   CardView(restaurant: restaurant)
+               }.zIndex(1.0)
+           }
+           //button stack
+           HStack{
+               Button(action: dismissAction){
+                   Image("dismiss_circle")
+                       .resizable()
+                       .aspectRatio(contentMode: .fit)
+                       .shadow(radius: 5)
+                       .frame(height: 90)
+               }
+
+               .padding(.bottom, 150)
+               Button(action: likeAction) {
+                   Image("like_circle")
+                       .resizable()
+                       .aspectRatio(contentMode: .fit)
+                       .shadow(radius: 5)
+                       .frame(height: 90)
+               }
+               .padding(.bottom, 150)
+           }//Like and dislike button
+       }
+       .padding(.top)
+       .background(.primaryBackground)
+   }
 }
-    struct SwipeView_Previews: PreviewProvider {
-        static var previews: some View {
-            SwipeView()
-        }
-    }
+   struct SwipeView_Previews: PreviewProvider {
+       static var previews: some View {
+           SwipeView()
+       }
+   }
 
 struct CardView: View {
-    @State var restaurant: SwipeView.Restaurant
-    let restaurantGradient = Gradient(colors: [Color.black.opacity(0), Color.black.opacity(0.5)])
-    var body: some View {
-        ZStack(alignment: .topLeading){
-            Image("McDonalds")//needs to be Image(restaurant.image)
-                .resizable()
-                .frame(width: 360, height: 360)
-                .cornerRadius(10)
-           // LinearGradient(gradient: restaurantGradient, startPoint: .top, endPoint: .bottom)
-            VStack{
-                Text(restaurant.name)
-                    .font(.largeTitle)
-                    .fontWeight(.bold)
-                    .padding(.bottom, 100)
-                    .foregroundColor(.black)
-                    .padding(.top, 0)
-                Spacer()
-            }
-            
-            HStack{
-                Image("like")
-                    .resizable()
-                    .aspectRatio(contentMode: .fit)
-                    .frame(width: 150)
-                    .opacity(Double(restaurant.x))
-                Image("nope")
-                    .resizable()
-                    .aspectRatio(contentMode: .fit)
-                    .frame(width: 150)
-                    .opacity(Double(restaurant.x * -1))
-            }
-        }
-        .padding(.top, 40)
-        .cornerRadius(8)
-        .offset(x: restaurant.x, y: restaurant.y)
-        .rotationEffect(.init(degrees: restaurant.degree))
-        .gesture(
-            DragGesture()
-                .onChanged{ value in
-                    withAnimation(.default){
-                        restaurant.x = value.translation.width
-                        restaurant.y = value.translation.height
-                        restaurant.degree = 7 * (value.translation.width > 0 ? 1 : -1)
-                    }
-                    
-                }
-                .onEnded{ value in
-                    withAnimation(.interpolatingSpring(mass: 1.0, stiffness: 50, damping: 8, initialVelocity: 0)){
-                        switch value.translation.width{
-                        case 0...100:
-                            restaurant.x = 0; restaurant.degree = 0; restaurant.y = 0
-                        case let x where x > 100:
-                            restaurant.x = 500; restaurant.degree = 12
-                        case (-100)...(-1):
-                            restaurant.x = 0; restaurant.degree = 0; restaurant.y = 0;
-                        case let x where x < -100:
-                            restaurant.x = -500; restaurant.degree = -12
-                        default: restaurant.x = 0; restaurant.y = 0
-                        }
-                    }
-                    
-                }
-            
-        )
-    }
+   @State var restaurant: SwipeView.Restaurant
+   let restaurantGradient = Gradient(colors: [Color.black.opacity(0), Color.black.opacity(0.5)])
+   var body: some View {
+       ZStack(alignment: .topLeading){
+           Image("McDonalds")//needs to be Image(restaurant.image)
+               .resizable()
+               .frame(width: 360, height: 360)
+               .cornerRadius(10)
+               .padding(.bottom)
+               //.offset(y: 10)
+          //LinearGradient(gradient: restaurantGradient, startPoint: .top, endPoint: .bottom)
+           VStack(){
+               Text(restaurant.name)
+                   .font(.largeTitle)
+                   .fontWeight(.bold)
+                   .padding(.bottom, 100)
+                   .foregroundColor(.white)
+                   .offset(y: 320)
+               Spacer()
+           }
+           
+           HStack{
+               Image("like")
+                   .resizable()
+                   .aspectRatio(contentMode: .fit)
+                   .frame(width: 150)
+                   .opacity(Double(restaurant.x/10 - 1))
+               Image("nope")
+                   .resizable()
+                   .aspectRatio(contentMode: .fit)
+                   .frame(width: 150)
+                   .opacity(Double(restaurant.x/10 * -1 - 1))
+                   .offset(x: 50)
+           }
+       }
+       .padding(.top, 40)
+       .cornerRadius(8)
+       .offset(x: restaurant.x, y: restaurant.y)
+       .rotationEffect(.init(degrees: restaurant.degree))
+       .gesture(
+           DragGesture()
+               .onChanged{ value in
+                   withAnimation(.default){
+                       restaurant.x = value.translation.width
+                       restaurant.y = value.translation.height
+                       restaurant.degree = 7 * (value.translation.width > 0 ? 1 : -1)
+                   }
+                   
+               }
+               .onEnded{ value in
+                   withAnimation(.interpolatingSpring(mass: 1.0, stiffness: 50, damping: 8, initialVelocity: 0)){
+                       switch value.translation.width{
+                       case 0...100:
+                           restaurant.x = 0; restaurant.degree = 0; restaurant.y = 0
+                       case let x where x > 100:
+                           restaurant.x = 500; restaurant.degree = 12
+                       case (-100)...(-1):
+                           restaurant.x = 0; restaurant.degree = 0; restaurant.y = 0;
+                       case let x where x < -100:
+                           restaurant.x = -500; restaurant.degree = -12
+                       default: restaurant.x = 0; restaurant.y = 0
+                       }
+                   }
+                   
+               }
+           
+       )
+   }
 }
