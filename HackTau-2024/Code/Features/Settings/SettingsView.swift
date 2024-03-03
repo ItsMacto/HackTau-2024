@@ -10,7 +10,7 @@ import SwiftUI
 
 struct SignOutConfirmationSheet: View {
     @Environment(\.presentationMode) var presentationMode
-    @EnvironmentObject var authenticationViewModel: AuthenticationViewModel
+    @StateObject var authenticationViewModel: AuthenticationViewModel
 
     var body: some View {
         VStack {
@@ -32,8 +32,8 @@ struct SignOutConfirmationSheet: View {
 }
 
 struct SettingsView: View {
-    @ObservedObject var settingsViewModel: SettingsViewModel
-    @EnvironmentObject var authenticationViewModel: AuthenticationViewModel // Inject AuthenticationViewModel
+    @ObservedObject var settingsViewModel: SettingsViewModel = SettingsViewModel()
+    @StateObject var authenticationViewModel: AuthenticationViewModel = AuthenticationViewModel()
     @State private var showingSignOutConfirmation = false
     
     
@@ -61,7 +61,7 @@ struct SettingsView: View {
             .navigationTitle("Settings")
         }
         .sheet(isPresented: $showingSignOutConfirmation, content: {
-            SignOutConfirmationSheet()
+            SignOutConfirmationSheet(authenticationViewModel: authenticationViewModel)
         })
     }
 }

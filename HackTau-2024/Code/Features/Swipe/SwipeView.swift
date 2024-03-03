@@ -47,7 +47,7 @@ struct SwipeView: View {
                       .offset(y: -10)
                       .padding(.bottom)
                   Spacer()
-                  //NavigationLink(destination: SettingsView(settingsViewModel: SettingsViewModel())) {
+                  NavigationLink(destination: SettingsView()) {
                           Image(systemName: "gearshape.fill")
                               .resizable()
                               .shadow(radius: 5)
@@ -56,7 +56,6 @@ struct SwipeView: View {
                               .offset(x: 20)
                               .foregroundColor(.secondaryBackground)
                       }
-                }
                       Image(systemName: "person.crop.circle.fill")
                           .resizable()
                           .shadow(radius: 5)
@@ -66,10 +65,7 @@ struct SwipeView: View {
                   }
                     .padding(.bottom)
                       .foregroundColor(.secondaryBackground)
-              }
-          }
-          
-          .padding(.horizontal)
+              }.padding(.horizontal)
           Spacer()
           //Middle Stack
           ZStack {

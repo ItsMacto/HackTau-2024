@@ -15,7 +15,6 @@ struct ContentView: View {
                 CircleMainView()
             } else {
                 LoginView(isLoggedIn: $isLoggedIn)
-                    .environmentObject(AuthenticationViewModel()) // Inject AuthenticationViewModel
             }
         }
 }
