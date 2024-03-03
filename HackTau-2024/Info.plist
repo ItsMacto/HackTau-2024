@@ -4,7 +4,7 @@
 <dict>
 	<key>UIAppFonts</key>
 	<array>
-		<string>FredokaOne-Regular.ttf</string>
+		<string>Resources/FredokaOne-Regular.ttf</string>
 	</array>
 </dict>
 </plist>

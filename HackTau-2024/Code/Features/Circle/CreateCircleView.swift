@@ -19,17 +19,18 @@ struct CreateCircleView: View {
     @State private var members = ["Alice", "Bob", "Charlie"] // Example list of members
 
     var body: some View {
+        
         ScrollView {
             VStack(spacing: 20){
                 HStack {
                     Text("Circle: \(circleCode)")
-                        .font(.custom("FredokaOne-Regular.ttf", size: 10))
+                        .font(.custom("FredokaOne-Regular", size: 30))
                         
                         .padding()
                         .background(Color.secondaryBackground)
                         .foregroundColor(.primaryBackground)
                         .cornerRadius(10)
-                        .bold()
+//                        .bold()
 
                     Button(action: {
                         // Implement share logic here, e.g., share sheet
@@ -86,7 +87,7 @@ struct CreateCircleView: View {
         .onAppear {
             fetchCurrentLocation()
         }
-        .background(Gradient(colors: [.secondaryAccent,.primaryAccent]).opacity(0.7))
+        .background(Gradient(colors: [.secondaryAccent,.primaryAccent]).opacity(0.5))
     }
 
     private func fetchCurrentLocation() {
