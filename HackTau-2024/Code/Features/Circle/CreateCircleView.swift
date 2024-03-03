@@ -87,6 +87,8 @@ struct CreateCircleView: View {
                     .font(.headline)
                     .padding(.top, 20)
                     .bold()
+                    .foregroundColor(Color.primaryBackground)
+                    
                 
                 ForEach(members, id: \.self) { member in
                     Text(member)
@@ -103,6 +105,7 @@ struct CreateCircleView: View {
                 .background(Color.secondaryBackground)
                 .foregroundColor(.white)
                 .cornerRadius(10)
+                .shadow(radius: 5)
                 NavigationLink(destination: SwipeView(circleCode: self.circleCode), isActive: $goToSwipeView) {
                     EmptyView()
                 }

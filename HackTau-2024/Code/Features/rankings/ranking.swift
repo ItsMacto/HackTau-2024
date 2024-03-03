@@ -29,7 +29,7 @@ struct RankingView: View {
                         Text("Rankings")
                             .font(.custom("Fredoka One", size: 40))
                             .fontWeight(.bold)
-                            .foregroundColor(.secondaryBackground)
+                            .foregroundColor(.primaryBackground)
 
                         List(rankedRestaurants) { restaurant in
                             HStack {
@@ -40,7 +40,7 @@ struct RankingView: View {
                                     .padding(.vertical, 10)
                                     .padding(.horizontal, 12)
                                     .cornerRadius(8)
-                                    .foregroundColor(.secondaryBackground)
+                                    .foregroundColor(.secondaryBackground).opacity(/*@START_MENU_TOKEN@*/0.8/*@END_MENU_TOKEN@*/)
 
                                 AsyncImage(url: URL(string: restaurant.image)) { image in
                                     image.resizable()

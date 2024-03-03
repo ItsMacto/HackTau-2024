@@ -16,27 +16,34 @@ struct SplashScreenView: View {
     
     var body: some View {
         ZStack {
-            // Your splash screen content
+            
             VStack {
+                Text("Munch")
+                    .font(.custom("Fredoka One", size: 100))
+                    .foregroundColor(.primaryAccent.opacity(1))
+                    .bold()
+                    .shadow(radius: 5)
+                    .opacity(opacity)
+                Spacer().frame(height: 20)
                 Image("MunchLogo")
                     .resizable()
                     .scaledToFit()
-                    .frame(width: 200, height: 200)
+                    .frame(width: 350, height: 350)
                     .padding()
                     .scaleEffect(size)
                     .opacity(opacity)
             }
+            .padding(.bottom, 50)
             .frame(maxWidth: .infinity, maxHeight: .infinity)
             .background(LinearGradient(gradient: Gradient(colors: [.primaryProduct, .secondaryProduct]), startPoint: .top, endPoint: .bottom))
             .edgesIgnoringSafeArea(.all)
             .onAppear() {
                 withAnimation(.easeIn(duration: 4)) {
-                    self.size = 1.5
+                    self.size = 1.11
                     self.opacity = 3
                 }
             }
             
-            // Your main content, hidden initially
             if isLoaded {
                 ContentView()
             }

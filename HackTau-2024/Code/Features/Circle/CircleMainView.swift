@@ -35,6 +35,7 @@ struct CircleMainView: View {
                                 .foregroundColor(.white)
                                 .cornerRadius(10)
                         }
+                        .shadow(radius: /*@START_MENU_TOKEN@*/10/*@END_MENU_TOKEN@*/)
                         
                         NavigationLink(destination: CreateCircleView()) {
                             Text("Create")
@@ -45,6 +46,7 @@ struct CircleMainView: View {
                                 .foregroundColor(.white)
                                 .cornerRadius(10)
                         }
+                        .shadow(radius: /*@START_MENU_TOKEN@*/10/*@END_MENU_TOKEN@*/)
                     }
                     .frame(maxWidth: 300) 
                     Spacer()
