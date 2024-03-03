@@ -56,6 +56,11 @@
 		047990C92B93A3F1006B7E32 /* JoinCircleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 047990C82B93A3F1006B7E32 /* JoinCircleView.swift */; };
 		047990CE2B93A437006B7E32 /* CreateCircleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 047990CD2B93A437006B7E32 /* CreateCircleView.swift */; };
 		047990D02B93A4AB006B7E32 /* MapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 047990CF2B93A4AB006B7E32 /* MapView.swift */; };
+		F35A0BCB2B94111C008C59A0 /* SettingsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F35A0BC52B94111B008C59A0 /* SettingsViewModel.swift */; };
+		F35A0BCC2B94111C008C59A0 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F35A0BC62B94111B008C59A0 /* SettingsView.swift */; };
+		F35A0BCD2B94111C008C59A0 /* ProfileEditorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F35A0BC82B94111B008C59A0 /* ProfileEditorView.swift */; };
+		F35A0BCE2B94111C008C59A0 /* ImagePickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F35A0BC92B94111B008C59A0 /* ImagePickerView.swift */; };
+		F35A0BCF2B94111C008C59A0 /* ProfileEditorViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F35A0BCA2B94111B008C59A0 /* ProfileEditorViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -75,6 +80,11 @@
 		047990C82B93A3F1006B7E32 /* JoinCircleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JoinCircleView.swift; sourceTree = "<group>"; };
 		047990CD2B93A437006B7E32 /* CreateCircleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateCircleView.swift; sourceTree = "<group>"; };
 		047990CF2B93A4AB006B7E32 /* MapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapView.swift; sourceTree = "<group>"; };
+		F35A0BC52B94111B008C59A0 /* SettingsViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsViewModel.swift; sourceTree = "<group>"; };
+		F35A0BC62B94111B008C59A0 /* SettingsView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
+		F35A0BC82B94111B008C59A0 /* ProfileEditorView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileEditorView.swift; sourceTree = "<group>"; };
+		F35A0BC92B94111B008C59A0 /* ImagePickerView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImagePickerView.swift; sourceTree = "<group>"; };
+		F35A0BCA2B94111B008C59A0 /* ProfileEditorViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileEditorViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -155,6 +165,9 @@
 		02D359992B93967B00EC7F1F /* Settings */ = {
 			isa = PBXGroup;
 			children = (
+				F35A0BC72B94111B008C59A0 /* ProfileEditor */,
+				F35A0BC62B94111B008C59A0 /* SettingsView.swift */,
+				F35A0BC52B94111B008C59A0 /* SettingsViewModel.swift */,
 			);
 			path = Settings;
 			sourceTree = "<group>";
@@ -247,6 +260,16 @@
 				047990CF2B93A4AB006B7E32 /* MapView.swift */,
 			);
 			path = Circle;
+			sourceTree = "<group>";
+		};
+		F35A0BC72B94111B008C59A0 /* ProfileEditor */ = {
+			isa = PBXGroup;
+			children = (
+				F35A0BC82B94111B008C59A0 /* ProfileEditorView.swift */,
+				F35A0BC92B94111B008C59A0 /* ImagePickerView.swift */,
+				F35A0BCA2B94111B008C59A0 /* ProfileEditorViewModel.swift */,
+			);
+			path = ProfileEditor;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -365,14 +388,19 @@
 				02D359A32B93995B00EC7F1F /* SwipeModel.swift in Sources */,
 				02D359A72B93997600EC7F1F /* SwipeActions.swift in Sources */,
 				047990CE2B93A437006B7E32 /* CreateCircleView.swift in Sources */,
+				F35A0BCD2B94111C008C59A0 /* ProfileEditorView.swift in Sources */,
+				F35A0BCE2B94111C008C59A0 /* ImagePickerView.swift in Sources */,
 				047990C92B93A3F1006B7E32 /* JoinCircleView.swift in Sources */,
 				02D359A12B9398DB00EC7F1F /* SwipeView.swift in Sources */,
 				02D359CA2B93ABA700EC7F1F /* LoginViewModel.swift in Sources */,
 				047990BA2B939154006B7E32 /* ContentView.swift in Sources */,
 				047990B82B939154006B7E32 /* HackTau_2024App.swift in Sources */,
 				02D359CB2B93ABA700EC7F1F /* LoginView.swift in Sources */,
+				F35A0BCF2B94111C008C59A0 /* ProfileEditorViewModel.swift in Sources */,
 				047990D02B93A4AB006B7E32 /* MapView.swift in Sources */,
 				047990C72B93A3B9006B7E32 /* CircleMainView.swift in Sources */,
+				F35A0BCB2B94111C008C59A0 /* SettingsViewModel.swift in Sources */,
+				F35A0BCC2B94111C008C59A0 /* SettingsView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
