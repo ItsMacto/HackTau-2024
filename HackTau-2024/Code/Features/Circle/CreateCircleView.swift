@@ -8,9 +8,13 @@
 import SwiftUI
 import MapKit
 import CoreLocation
+import Firebase
+
 
 struct CreateCircleView: View {
-    @State private var circleCode: String = "29090842" //TODO: Placeholder for dynamically generated code
+    let functions = Functions.functions()
+
+    @State private var circleCode: String = "" //TODO: Placeholder for dynamically generated code
     @State private var searchText = ""
     @State private var region = MKCoordinateRegion()
     @State private var showingCity = "Loading..."
@@ -93,6 +97,7 @@ struct CreateCircleView: View {
         }
         .onAppear {
             fetchCurrentLocation()
+            createCircle ()
         }
         .background(Gradient(colors: [.secondaryAccent,.primaryAccent]).opacity(0.7))
     }
@@ -185,4 +190,21 @@ struct ShareSheet: UIViewControllerRepresentable {
     func updateUIViewController(_ uiViewController: UIActivityViewController, context: Context) {}
 }
 
+
+private func createCircle() {
+       guard let userID = Auth.auth().currentUser?.uid else {
+           print("User not logged in")
+           return
+       }
+       
+       functions.httpsCallable("createCircle").call(["userId": userID]) { result, error in
+           if let error = error as NSError? {
+               print("Error calling createCircle: \(error.localizedDescription)")
+           } else if let circleId = result?.data as? String {
+               DispatchQueue.main.async {
+                   self.circleCode = circleId
+               }
+           }
+       }
+   }
 
