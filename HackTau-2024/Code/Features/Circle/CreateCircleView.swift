@@ -20,6 +20,8 @@ struct CreateCircleView: View {
     @State private var region = MKCoordinateRegion()
     @State private var showingCity = "Loading..."
     @StateObject private var locationManager = LocationManager()
+    @State private var failedToStart = false
+    @State private var goToSwipeView = false
 
     @State private var members = ["Alice", "Bob", "Charlie"] // TODO: static list of members
     @State private var showingShareSheet = false
@@ -93,8 +95,29 @@ struct CreateCircleView: View {
                         .background(Color.white.opacity(0.7))
                         .cornerRadius(10)
                 }
+                
+                Button("Start Circle") {
+                    startCircle()
+                }
+                .padding()
+                .background(Color.secondaryBackground)
+                .foregroundColor(.white)
+                .cornerRadius(10)
+                NavigationLink(destination: SwipeView(), isActive: $goToSwipeView) {
+                    EmptyView()
+                }
+
+                
             }
             .padding()
+            .alert(
+                "Failed to join Circle",
+                isPresented: $failedToStart
+            ) {
+                Button("OK") {
+                    self.failedToStart = false
+                }
+            }
         }
         .onAppear {
             fetchCurrentLocation()
@@ -130,6 +153,30 @@ struct CreateCircleView: View {
            }
        }
     
+    private func startCircle() {
+        let functions = Functions.functions()
+        
+        let data = ["circleId": self.circleCode,
+                    "latitude": String(self.$region.wrappedValue.center.latitude),
+                    "longitude": String(self.$region.wrappedValue.center.longitude),
+         "radius": "1000"] as [String: String]
+        
+        functions.httpsCallable("createCircle").call(data) { result, error in
+            if let error = error as NSError? {
+                print("Error calling createCircle: \(error)")
+            } else if ((result?.data) != nil) { // Now you can safely subscript
+                       DispatchQueue.main.async {
+                           self.goToSwipeView = true
+                       }
+                   } else {
+                       // Handle the case where `circleId` is not found or `result?.data` cannot be cast to `[String: Any]`
+                       print("circleId not found or data is not a dictionary")
+                       self.failedToStart = true
+                   }
+       }
+
+    }
+    
     func observeDocument() {
         let db = Firestore.firestore()
         var listener: ListenerRegistration?
@@ -147,6 +194,18 @@ struct CreateCircleView: View {
                 return
             }
             print("Current data: \(data)")
+            
+            guard let members = data["members"] as? [[String: Any]] else {
+                return
+            }
+            
+            guard let status = data["status"] as? string else {
+                return
+            }
+            
+            if status == "active" {
+                self.goToSwipeView = true
+            }
             
             guard let members = data["members"] as? [[String: Any]] else {
                 return

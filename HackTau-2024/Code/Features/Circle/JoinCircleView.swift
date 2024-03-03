@@ -22,6 +22,7 @@ struct JoinCircleView: View {
     @State private var failedToJoin: Bool = false
     @State private var didJoin: Bool = false
     @State private var members = ["Alice", "Bob", "Charlie"]
+    @State private var goToSwipeView = false
 
     var body: some View {
         ZStack {
@@ -65,8 +66,10 @@ struct JoinCircleView: View {
                             .cornerRadius(10)
                     }
                 }
-
                 
+                NavigationLink(destination: SwipeView(), isActive: $goToSwipeView) {
+                    EmptyView()
+                }
                 Spacer() // Pushes everything to the top
             }
             .padding()
@@ -112,7 +115,7 @@ struct JoinCircleView: View {
         let db = Firestore.firestore()
         var listener: ListenerRegistration?
         
-        let docRef = db.collection("circles").document(self.circleCode)
+        let docRef = db.collection("circles").document(self.circleCode.lowercased())
 
         listener = docRef.addSnapshotListener { documentSnapshot, error in
             guard let document = documentSnapshot else {
@@ -124,7 +127,14 @@ struct JoinCircleView: View {
                 print("Document data was empty.")
                 return
             }
-            print("Current data: \(data)")
+            
+            guard let status = data["status"] as? String else {
+                return
+            }
+            
+            if status == "active" {
+                self.goToSwipeView = true
+            }
             
             guard let members = data["members"] as? [[String: Any]] else {
                 return
