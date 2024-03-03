@@ -47,6 +47,12 @@ class LoginViewModel: ObservableObject {
             }
         }
     }
+    func checkUserAuthentication() {
+        if let _ = Auth.auth().currentUser {
+            isLoggedIn = true
+        }
+    }
+
     
     private func getRootViewController() -> UIViewController {
           guard let screen = UIApplication.shared.connectedScenes.first as? UIWindowScene else {
