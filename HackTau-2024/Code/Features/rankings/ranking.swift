@@ -61,6 +61,9 @@ struct RankingView: View {
                     }
             
         }.navigationBarBackButtonHidden()
+            .onAppear() {
+                observeDocument()
+            }
         
     }
     
