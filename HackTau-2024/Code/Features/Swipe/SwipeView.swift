@@ -97,12 +97,12 @@ struct CardView: View {
                 Image("like")
                     .resizable()
                     .aspectRatio(contentMode: .fit)
-                    .frame(width: 100)
+                    .frame(width: 150)
                     .opacity(Double(restaurant.x))
                 Image("nope")
                     .resizable()
                     .aspectRatio(contentMode: .fit)
-                    .frame(width: 100)
+                    .frame(width: 150)
                     .opacity(Double(restaurant.x * -1))
             }
         }
