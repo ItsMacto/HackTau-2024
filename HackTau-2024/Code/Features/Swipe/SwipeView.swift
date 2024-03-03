@@ -38,7 +38,7 @@ struct SwipeView: View {
                                 .resizable()
                                 .shadow(radius: 5)
                                 .frame(width: 60, height: 60)
-                                .offset(y: -20)
+                                .offset(y: -5)
                                 .offset(x: 20)
                                 .foregroundColor(.secondaryBackground)
                         }
@@ -48,7 +48,7 @@ struct SwipeView: View {
                             .resizable()
                             .shadow(radius: 5)
                             .frame(width:100, height: 100)
-                            .offset(y: -10)
+                            .offset(y: 5)
                             .padding(.bottom)
                         Spacer()
                         NavigationLink(destination: SettingsView()) {
@@ -56,7 +56,7 @@ struct SwipeView: View {
                                 .resizable()
                                 .shadow(radius: 5)
                                 .frame(width: 60, height: 60)
-                                .offset(y: -20)
+                                .offset(y: -5)
                                 .offset(x: -25)
                                 .foregroundColor(.secondaryBackground)
                         }
@@ -73,6 +73,7 @@ struct SwipeView: View {
                             self.likeRestaurant(restaurant)
                         })
                     }.zIndex(1.0)
+                        .shadow(radius: 10)
                 }
                 //button stack
                 HStack(alignment: .center, spacing: 70){
