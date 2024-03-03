@@ -9,15 +9,15 @@ struct SwipeView: View {
      var x: CGFloat = 0.0
      var y: CGFloat = 0.0
      var degree: Double = 0.0
-     var isLiked: Bool = false
+     var rating: Int = 0
  }
   @State private var gestureEnabled = true
 
   @State var likedRestaurants: [Restaurant] = []
   @State var restaurants = [
-      Restaurant(id: 0, image: "https://upload.wikimedia.org/wikipedia/commons/2/25/New-McDonald-HU-lg_%2843261171540%29.jpg", name: "McDonalds"),
-      Restaurant(id: 1, image: "https://upload.wikimedia.org/wikipedia/commons/thumb/c/cc/Burger_King_2020.svg/1280px-Burger_King_2020.svg.png", name: "Burger King"),
-      Restaurant(id: 2, image: "https://upload.wikimedia.org/wikipedia/en/thumb/8/85/Panda_Express_logo.svg/1920px-Panda_Express_logo.svg.png", name: "Panda Express")
+    Restaurant(id: 0, image: "https://upload.wikimedia.org/wikipedia/commons/2/25/New-McDonald-HU-lg_%2843261171540%29.jpg", name: "McDonalds", rating: 5),
+    Restaurant(id: 1, image: "https://upload.wikimedia.org/wikipedia/commons/thumb/c/cc/Burger_King_2020.svg/1280px-Burger_King_2020.svg.png", name: "Burger King", rating: 4),
+    Restaurant(id: 2, image: "https://upload.wikimedia.org/wikipedia/en/thumb/8/85/Panda_Express_logo.svg/1920px-Panda_Express_logo.svg.png", name: "Panda Express", rating: 5)
   ]
   
   var body: some View{
@@ -90,7 +90,6 @@ struct SwipeView: View {
                       swipeCard(direction: .right, restaurants: &self.restaurants) { restaurant in
                           // Handle liked restaurant
                           self.likedRestaurants.append(restaurant)
-                          print("Liked Restaurant ID: \(restaurant.id)")
                       }
                   }
               }){
@@ -148,15 +147,20 @@ struct CardView: View {
              //.offset(y: 10)
         //LinearGradient(gradient: restaurantGradient, startPoint: .top, endPoint: .bottom)
          VStack(){
-             Text(restaurant.name)
-                 .font(.largeTitle)
-                 .fontWeight(.bold)
-                 .padding(.bottom, 100)
-                 .foregroundColor(.white)
-                 .offset(y: 320)
+             VStack(){
+                 Text(restaurant.name)
+                     .font(.largeTitle)
+                     .fontWeight(.bold)
+                     .padding(.bottom, 100)
+                     .foregroundColor(.white)
+                     .offset(y: 320)
+                 RatingView(rating: restaurant.rating)
+                     .padding(.bottom, 100) // Adjust the padding as needed
+                     .offset(y: -140)
+                     .offset(x: -20)
+             }
              Spacer()
          }
-         
          HStack{
              Image("like")
                  .resizable()
@@ -208,3 +212,4 @@ struct CardView: View {
      )
  }
 }
+
