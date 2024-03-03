@@ -47,7 +47,7 @@ struct SwipeView: View {
                       .offset(y: -10)
                       .padding(.bottom)
                   Spacer()
-                  NavigationLink(destination: SettingsView(settingsViewModel: SettingsViewModel())) {
+                  //NavigationLink(destination: SettingsView(settingsViewModel: SettingsViewModel())) {
                           Image(systemName: "gearshape.fill")
                               .resizable()
                               .shadow(radius: 5)
@@ -157,14 +157,12 @@ struct CardView: View {
             // .offset(x: 17)
         //LinearGradient(gradient: restaurantGradient, startPoint: .top, endPoint: .bottom)
          VStack(){
-                     Text(restaurant.name)
-                         .font(.largeTitle)
-                         .fontWeight(.bold)
-                         .foregroundColor(.white)
-                         .frame(maxWidth: 360, alignment: .leading)
-//                         .offset(y:280)
-                
-                RatingView(rating: restaurant.rating)
+             Text(restaurant.name)
+                 .font(.largeTitle)
+                 .fontWeight(.bold)
+                 .foregroundColor(.white)
+                 .frame(maxWidth: 360, alignment: .leading)
+             RatingView(rating: restaurant.rating)
                  .fontWeight(.bold)
                  .foregroundColor(.white)
                  .frame(maxWidth: 360, alignment: .leading)
