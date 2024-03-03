@@ -42,7 +42,7 @@ struct LoginView: View {
                 
                 Text("Munch")
                     .font(.custom("Fredoka One", size: 100))
-                    .foregroundColor(.primaryAccent.opacity(0.9))
+                    .foregroundColor(.primaryAccent.opacity(1))
                     .bold()
                 
                 Image("MunchLogo")
