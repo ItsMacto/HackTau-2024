@@ -46,12 +46,12 @@ struct CircleMainView: View {
                                 .cornerRadius(10)
                         }
                     }
-                    .frame(maxWidth: 300) // Adjust the max width as needed to control the size of the buttons
-                    
+                    .frame(maxWidth: 300) 
                     Spacer()
                 }
                 .padding()
             }
+                    
         }
     }
 }

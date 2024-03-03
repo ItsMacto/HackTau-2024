@@ -10,13 +10,13 @@ import MapKit
 import CoreLocation
 
 struct CreateCircleView: View {
-    @State private var circleCode: String = "29090842" // Placeholder for dynamically generated code
+    @State private var circleCode: String = "29090842" //TODO: Placeholder for dynamically generated code
     @State private var searchText = ""
-    @State private var region = MKCoordinateRegion() // Initialized empty, will be set onAppear
+    @State private var region = MKCoordinateRegion()
     @State private var showingCity = "Loading..."
     @StateObject private var locationManager = LocationManager()
 
-    @State private var members = ["Alice", "Bob", "Charlie"] // Example list of members
+    @State private var members = ["Alice", "Bob", "Charlie"] // TODO: static list of members
     
     var body: some View {
         ScrollView {
@@ -55,8 +55,10 @@ struct CreateCircleView: View {
                     TextField("Search Address", text: $searchText, onCommit: {
                         geocodeAddressString(searchText)
                     })
-                    .textFieldStyle(RoundedBorderTextFieldStyle())
-                    .padding(.leading)
+                    .padding()
+                    .background(Color.white.opacity(0.7))
+                    .cornerRadius(15)
+                    .padding(.horizontal)
                    
                     Button(action: {
                         fetchCurrentLocation()
@@ -65,6 +67,7 @@ struct CreateCircleView: View {
                             .resizable()
                             .frame(width: 40, height: 40)
                             .padding(.trailing)
+                            .foregroundColor(.secondaryBackground)
                     }
                 }
 
@@ -77,7 +80,7 @@ struct CreateCircleView: View {
                     Text(member)
                         .padding()
                         .frame(maxWidth: .infinity, alignment: .leading)
-                        .background(Color.gray.opacity(0.1))
+                        .background(Color.white.opacity(0.7))
                         .cornerRadius(10)
                 }
             }
