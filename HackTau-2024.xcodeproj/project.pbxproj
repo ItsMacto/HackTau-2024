@@ -49,6 +49,7 @@
 		02D35A092B93B7F200EC7F1F /* FirebaseStorageCombine-Community in Frameworks */ = {isa = PBXBuildFile; productRef = 02D35A082B93B7F200EC7F1F /* FirebaseStorageCombine-Community */; };
 		02D35A0B2B93BF5300EC7F1F /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 02D35A0A2B93BF5300EC7F1F /* GoogleService-Info.plist */; };
 		0465C73C2B9420C400FA9AE1 /* FredokaOne-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 0465C73B2B9420C400FA9AE1 /* FredokaOne-Regular.ttf */; };
+		0465C7442B9460F500FA9AE1 /* ranking.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0465C7432B9460F500FA9AE1 /* ranking.swift */; };
 		047990B82B939154006B7E32 /* HackTau_2024App.swift in Sources */ = {isa = PBXBuildFile; fileRef = 047990B72B939154006B7E32 /* HackTau_2024App.swift */; };
 		047990BA2B939154006B7E32 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 047990B92B939154006B7E32 /* ContentView.swift */; };
 		047990BC2B939155006B7E32 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 047990BB2B939155006B7E32 /* Assets.xcassets */; };
@@ -74,6 +75,7 @@
 		02D359C92B93ABA700EC7F1F /* LoginView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
 		02D35A0A2B93BF5300EC7F1F /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		0465C73B2B9420C400FA9AE1 /* FredokaOne-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "FredokaOne-Regular.ttf"; sourceTree = "<group>"; };
+		0465C7432B9460F500FA9AE1 /* ranking.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ranking.swift; sourceTree = "<group>"; };
 		047990B42B939154006B7E32 /* HackTau-2024.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "HackTau-2024.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		047990B72B939154006B7E32 /* HackTau_2024App.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HackTau_2024App.swift; sourceTree = "<group>"; };
 		047990B92B939154006B7E32 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -141,6 +143,7 @@
 		02D359962B93966900EC7F1F /* Features */ = {
 			isa = PBXGroup;
 			children = (
+				0465C7412B9460CE00FA9AE1 /* rankings */,
 				02D359C52B93ABA700EC7F1F /* Account */,
 				047990C52B939FD5006B7E32 /* Circle */,
 				02D359992B93967B00EC7F1F /* Settings */,
@@ -217,6 +220,14 @@
 				02D359C72B93ABA700EC7F1F /* LoginViewModel.swift */,
 			);
 			path = ViewModels;
+			sourceTree = "<group>";
+		};
+		0465C7412B9460CE00FA9AE1 /* rankings */ = {
+			isa = PBXGroup;
+			children = (
+				0465C7432B9460F500FA9AE1 /* ranking.swift */,
+			);
+			path = rankings;
 			sourceTree = "<group>";
 		};
 		047990AB2B939154006B7E32 = {
@@ -415,6 +426,7 @@
 				02D359CB2B93ABA700EC7F1F /* LoginView.swift in Sources */,
 				F35A0BCF2B94111C008C59A0 /* ProfileEditorViewModel.swift in Sources */,
 				047990D02B93A4AB006B7E32 /* MapView.swift in Sources */,
+				0465C7442B9460F500FA9AE1 /* ranking.swift in Sources */,
 				F35A0BD52B941488008C59A0 /* User Profile.swift in Sources */,
 				047990C72B93A3B9006B7E32 /* CircleMainView.swift in Sources */,
 				F35A0BCB2B94111C008C59A0 /* SettingsViewModel.swift in Sources */,
