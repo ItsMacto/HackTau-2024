@@ -25,7 +25,7 @@ struct HackTau_2024App: App {
     
     var body: some Scene {
         WindowGroup {
-            SplashScreenView()
+            ContentView()
         }
     }
 }
