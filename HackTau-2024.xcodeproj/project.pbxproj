@@ -64,6 +64,7 @@
 		F35A0BCF2B94111C008C59A0 /* ProfileEditorViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F35A0BCA2B94111B008C59A0 /* ProfileEditorViewModel.swift */; };
 		F35A0BD52B941488008C59A0 /* User Profile.swift in Sources */ = {isa = PBXBuildFile; fileRef = F35A0BD42B941488008C59A0 /* User Profile.swift */; };
 		F35A0BD72B943976008C59A0 /* SplashScreeenView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F35A0BD62B943975008C59A0 /* SplashScreeenView.swift */; };
+		F35A0BDB2B945CD9008C59A0 /* AuthenticationViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F35A0BDA2B945CD9008C59A0 /* AuthenticationViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -90,6 +91,7 @@
 		F35A0BCA2B94111B008C59A0 /* ProfileEditorViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileEditorViewModel.swift; sourceTree = "<group>"; };
 		F35A0BD42B941488008C59A0 /* User Profile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "User Profile.swift"; sourceTree = "<group>"; };
 		F35A0BD62B943975008C59A0 /* SplashScreeenView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashScreeenView.swift; sourceTree = "<group>"; };
+		F35A0BDA2B945CD9008C59A0 /* AuthenticationViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -174,6 +176,7 @@
 				F35A0BC72B94111B008C59A0 /* ProfileEditor */,
 				F35A0BC62B94111B008C59A0 /* SettingsView.swift */,
 				F35A0BC52B94111B008C59A0 /* SettingsViewModel.swift */,
+				F35A0BDA2B945CD9008C59A0 /* AuthenticationViewModel.swift */,
 			);
 			path = Settings;
 			sourceTree = "<group>";
@@ -403,6 +406,7 @@
 			files = (
 				02D359A32B93995B00EC7F1F /* SwipeModel.swift in Sources */,
 				02D359A72B93997600EC7F1F /* SwipeActions.swift in Sources */,
+				F35A0BDB2B945CD9008C59A0 /* AuthenticationViewModel.swift in Sources */,
 				047990CE2B93A437006B7E32 /* CreateCircleView.swift in Sources */,
 				F35A0BCD2B94111C008C59A0 /* ProfileEditorView.swift in Sources */,
 				F35A0BCE2B94111C008C59A0 /* ImagePickerView.swift in Sources */,
