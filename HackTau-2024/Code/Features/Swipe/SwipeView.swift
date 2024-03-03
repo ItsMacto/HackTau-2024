@@ -22,95 +22,98 @@ struct SwipeView: View {
 
   
     var body: some View{
-      VStack{
-          //Top Stack
-          ZStack{
-              Color(.secondaryProduct)
-                  .frame(width:400, height: 200)
-                  .offset(y:-75)
-              HStack(spacing: 0){
-                  Button(action:{}) {
-                      Image(systemName: "gearshape.fill")
-                          .resizable()
-                          .shadow(radius: 5)
-                          .frame(width: 60, height: 60)
-                          .offset(y: -20)
-                          .offset(x: 20)
-                          .foregroundColor(.secondaryBackground)
-                  }
-                  Spacer()
-                  
-                  Image("MunchLogo")
-                      .resizable()
-                      .shadow(radius: 5)
-                      .frame(width:100, height: 100)
-                      .offset(y: -10)
-                      .padding(.bottom)
-                  Spacer()
-                  NavigationLink(destination: SettingsView()) {
-                      Image(systemName: "person.crop.circle.fill")
-                          .resizable()
-                          .shadow(radius: 5)
-                          .frame(width: 60, height: 60)
-                          .offset(y: -20)
-                          .offset(x: -25)
-                          .foregroundColor(.secondaryBackground)
-                      }
-                      
-                  }
+        NavigationView{
+            VStack{
+                //Top Stack
+                ZStack{
+                    Color(.secondaryProduct)
+                        .frame(width:400, height: 200)
+                        .offset(y:-75)
+                    HStack(spacing: 0){
+                        Button(action:{}) {
+                            Image(systemName: "gearshape.fill")
+                                .resizable()
+                                .shadow(radius: 5)
+                                .frame(width: 60, height: 60)
+                                .offset(y: -20)
+                                .offset(x: 20)
+                                .foregroundColor(.secondaryBackground)
+                        }
+                        Spacer()
+                        
+                        Image("MunchLogo")
+                            .resizable()
+                            .shadow(radius: 5)
+                            .frame(width:100, height: 100)
+                            .offset(y: -10)
+                            .padding(.bottom)
+                        Spacer()
+                        NavigationLink(destination: SettingsView()) {
+                            Image(systemName: "person.crop.circle.fill")
+                                .resizable()
+                                .shadow(radius: 5)
+                                .frame(width: 60, height: 60)
+                                .offset(y: -20)
+                                .offset(x: -25)
+                                .foregroundColor(.secondaryBackground)
+                        }
+                        
+                    }
                     .padding(.bottom)
-                      .foregroundColor(.secondaryBackground)
-              }.padding(.horizontal)
-          Spacer()
-          //Middle Stack
-          ZStack {
-              ForEach(restaurants.reversed()) { restaurant in
-                  CardView(restaurant: restaurant, onLike: {
-                      self.likeRestaurant(restaurant)
-                  })
-              }.zIndex(1.0)
-          }
-          //button stack
-          HStack(alignment: .center, spacing: 70){
-              Button(action: {
-                  withAnimation {
-                      swipeCard(direction: .right, restaurants: &self.restaurants) { restaurant in
-                      }
+                    .foregroundColor(.secondaryBackground)
+                }.padding(.horizontal)
+                Spacer()
+                //Middle Stack
+                ZStack {
+                    ForEach(restaurants.reversed()) { restaurant in
+                        CardView(restaurant: restaurant, onLike: {
+                            self.likeRestaurant(restaurant)
+                        })
+                    }.zIndex(1.0)
                 }
-              }){
-                  Image("dismiss_circle")
-                      .resizable()
-                      .aspectRatio(contentMode: .fit)
-                      .shadow(radius: 5)
-                      .frame(height: 90)
+                //button stack
+                HStack(alignment: .center, spacing: 70){
+                    Button(action: {
+                        withAnimation {
+                            swipeCard(direction: .right, restaurants: &self.restaurants) { restaurant in
+                            }
+                        }
+                    }){
+                        Image("dismiss_circle")
+                            .resizable()
+                            .aspectRatio(contentMode: .fit)
+                            .shadow(radius: 5)
+                            .frame(height: 90)
+                    }
+                    
+                    .padding(.bottom, 150)
+                    Button(action: {
+                        withAnimation {
+                            swipeCard(direction: .right, restaurants: &self.restaurants) { restaurant in
+                                // Handle liked restaurant
+                                self.likedRestaurants.append(restaurant)
+                            }
+                        }
+                    }){
+                        Image("like_circle")
+                            .resizable()
+                            .aspectRatio(contentMode: .fit)
+                            .shadow(radius: 5)
+                            .frame(height: 90)
+                    }
+                    .padding(.bottom, 150)
+                }//Like and dislike button
+            }
+            .padding(.top)
+            .background(.secondaryProduct)
+        }}
+          func likeRestaurant(_ restaurant: Restaurant) {
+              if let index = restaurants.firstIndex(where: { $0.id == restaurant.id }) {
+                  likedRestaurants.append(restaurants[index])
               }
-              
-              .padding(.bottom, 150)
-              Button(action: {
-                  withAnimation {
-                      swipeCard(direction: .right, restaurants: &self.restaurants) { restaurant in
-                          // Handle liked restaurant
-                          self.likedRestaurants.append(restaurant)
-                      }
-                  }
-              }){
-                  Image("like_circle")
-                      .resizable()
-                      .aspectRatio(contentMode: .fit)
-                      .shadow(radius: 5)
-                      .frame(height: 90)
-              }
-              .padding(.bottom, 150)
-          }//Like and dislike button
-      }
-      .padding(.top)
-      .background(.secondaryProduct)
-  }
-    func likeRestaurant(_ restaurant: Restaurant) {
-        if let index = restaurants.firstIndex(where: { $0.id == restaurant.id }) {
-            likedRestaurants.append(restaurants[index])
+          
         }
-    }
+      
 }
 func swipeCard(direction: SwipeDirection, restaurants: inout [SwipeView.Restaurant], onLiked: (SwipeView.Restaurant) -> Void) {
     withAnimation {
