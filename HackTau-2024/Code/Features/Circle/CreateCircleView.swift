@@ -23,7 +23,7 @@ struct CreateCircleView: View {
             VStack(spacing: 20){
                 HStack {
                     Text("Circle: \(circleCode)")
-                        .font(.title)
+                        .font(.custom("FredokaOne-Regular.ttf", size: 10))
                         
                         .padding()
                         .background(Color.secondaryBackground)
