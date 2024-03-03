@@ -83,6 +83,7 @@ struct CreateCircleView: View {
         locationManager.onLocationUpdate = { location in
             DispatchQueue.main.async { // Ensure UI updates are on the main thread
                 self.updateRegionAndCity(from: location)
+                self.updateCityName(from: location)
             }
         }
         locationManager.requestLocation()
@@ -115,27 +116,30 @@ struct CreateCircleView: View {
 }
 class LocationManager: NSObject, ObservableObject, CLLocationManagerDelegate {
     private let locationManager = CLLocationManager()
-    var onLocationUpdate: ((CLLocation) -> Void)? // Callback for location updates
+    var onLocationUpdate: ((CLLocation) -> Void)?
 
     override init() {
         super.init()
         locationManager.delegate = self
         locationManager.desiredAccuracy = kCLLocationAccuracyBest
-        
-        if CLAuthorizationStatus.notDetermined == .notDetermined {
-              locationManager.requestWhenInUseAuthorization()
-            print("Location Requested")
-           }
-           locationManager.startUpdatingLocation()
+        requestLocationAuthorization()
+    }
+
+    private func requestLocationAuthorization() {
+        if locationManager.authorizationStatus == .notDetermined {
+            locationManager.requestWhenInUseAuthorization()
+        }
     }
 
     func requestLocation() {
-        locationManager.requestLocation()
+        requestLocationAuthorization() // Ensure we have authorization every time we request location
+        locationManager.startUpdatingLocation() // Start updates to get the latest location
     }
 
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
-        if let location = locations.first {
-            onLocationUpdate?(location) // Call the callback with the new location
+        if let location = locations.last { // Use the most recent location
+            onLocationUpdate?(location)
+            locationManager.stopUpdatingLocation() //Stops updates/ continuous tracking
         }
     }
 
@@ -143,6 +147,7 @@ class LocationManager: NSObject, ObservableObject, CLLocationManagerDelegate {
         print("Failed to find user's location: \(error.localizedDescription)")
     }
 }
+
 
 struct CreateCircleView_Previews: PreviewProvider {
     static var previews: some View {
