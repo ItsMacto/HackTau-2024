@@ -10,7 +10,7 @@ import MapKit
 import CoreLocation
 
 struct CreateCircleView: View {
-    @State private var circleCode: String = "GeneratedCode123" // Placeholder for dynamically generated code
+    @State private var circleCode: String = "29090842" // Placeholder for dynamically generated code
     @State private var searchText = ""
     @State private var region = MKCoordinateRegion() // Initialized empty, will be set onAppear
     @State private var showingCity = "Loading..."
@@ -22,26 +22,34 @@ struct CreateCircleView: View {
         ScrollView {
             VStack(spacing: 20){
                 HStack {
-                    Text(circleCode)
-                        .font(.title2)
+                    Text("Circle: \(circleCode)")
+                        .font(.title)
+                        
                         .padding()
-                        .background(Color.gray.opacity(0.2))
+                        .background(Color.secondaryBackground)
+                        .foregroundColor(.primaryBackground)
                         .cornerRadius(10)
+                        .bold()
 
                     Button(action: {
                         // Implement share logic here, e.g., share sheet
                     }) {
                         Image(systemName: "square.and.arrow.up")
                             .resizable()
+                            .aspectRatio(contentMode: .fit)
                             .frame(width: 30, height: 30)
                             .padding()
+                        
+
                     }
-                    .background(Color.green)
+                    .background(Color.secondaryBackground)
                     .foregroundColor(.white)
                     .cornerRadius(10)
                 }
             
                 Text("Showing restaurants for: \(showingCity)")
+                    .foregroundColor(Color.primaryBackground)
+                
                 
                 HStack {
                     TextField("Search Address", text: $searchText, onCommit: {
@@ -49,7 +57,7 @@ struct CreateCircleView: View {
                     })
                     .textFieldStyle(RoundedBorderTextFieldStyle())
                     .padding(.leading)
-
+                   
                     Button(action: {
                         fetchCurrentLocation()
                     }) {
@@ -63,6 +71,7 @@ struct CreateCircleView: View {
                 Text("Circle Members")
                     .font(.headline)
                     .padding(.top, 20)
+                    .bold()
                 
                 ForEach(members, id: \.self) { member in
                     Text(member)
@@ -77,6 +86,7 @@ struct CreateCircleView: View {
         .onAppear {
             fetchCurrentLocation()
         }
+        .background(Gradient(colors: [.secondaryAccent,.primaryAccent]).opacity(0.7))
     }
 
     private func fetchCurrentLocation() {
