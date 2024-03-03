@@ -7,39 +7,46 @@
 import SwiftUI
 import MapKit
 
+
 struct CircleMainView: View {
     var body: some View {
         NavigationView {
             ZStack {
-                
                 LinearGradient(gradient: Gradient(colors: [.secondaryAccent, .primaryAccent]), startPoint: .top, endPoint: .bottom)
-                                    .opacity(0.5)
-                                    .edgesIgnoringSafeArea(.all)
+                    .opacity(0.5)
+                    .edgesIgnoringSafeArea(.all)
                 
                 VStack(spacing: 20) {
-                    Text("Join or Create a circle")
-                        .font(.custom(<#T##name: String##String#>, size: <#T##CGFloat#>))
+                    Text("Join or Create a Circle!")
+                        .font(.custom("Fredoka One", size: 40))
                         .fontWeight(.bold)
+                        .multilineTextAlignment(.center)
+                        .padding()
+                        .foregroundColor(.secondaryBackground)
                     
-                    Spacer()
-                    
-                    NavigationLink(destination: JoinCircleView()) {
-                        Text("Join a Circle")
-                            .font(.title2)
-                            .padding()
-                            .background(Color.secondaryBackground)
-                            .foregroundColor(.white)
-                            .cornerRadius(10)
+                    // Buttons container
+                    VStack(spacing: 20) {
+                        NavigationLink(destination: JoinCircleView()) {
+                            Text("Join")
+                                .font(.title2)
+                                .frame(minWidth: 0, maxWidth: 150)
+                                .padding()
+                                .background(Color.secondaryBackground)
+                                .foregroundColor(.white)
+                                .cornerRadius(10)
+                        }
+                        
+                        NavigationLink(destination: CreateCircleView()) {
+                            Text("Create")
+                                .font(.title2)
+                                .frame(minWidth: 0, maxWidth: 150)
+                                .padding()
+                                .background(Color.secondaryBackground)
+                                .foregroundColor(.white)
+                                .cornerRadius(10)
+                        }
                     }
-                    
-                    NavigationLink(destination: CreateCircleView()) {
-                        Text("Create a Circle")
-                            .font(.title2)
-                            .padding()
-                            .background(Color.secondaryBackground)
-                            .foregroundColor(.white)
-                            .cornerRadius(10)
-                    }
+                    .frame(maxWidth: 300) // Adjust the max width as needed to control the size of the buttons
                     
                     Spacer()
                 }
@@ -48,7 +55,6 @@ struct CircleMainView: View {
         }
     }
 }
-
 // Preview
 struct CircleMainView_Previews: PreviewProvider {
     static var previews: some View {
