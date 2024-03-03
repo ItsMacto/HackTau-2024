@@ -60,7 +60,7 @@ struct RankingView: View {
                         .navigationTitle("Top Restaurants")
                     }
             
-                }
+        }.navigationBarBackButtonHidden()
         
     }
     

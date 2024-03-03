@@ -17,6 +17,7 @@ struct SwipeView: View {
   @State private var gestureEnabled = true
     @State private var goToRankView = false
   @State var likedRestaurants: [Restaurant] = []
+//    @State var dislikedRestaurants: [Restaurant] = []
   @State var restaurants = [
     Restaurant(id: 0, image: "https://upload.wikimedia.org/wikipedia/commons/2/25/New-McDonald-HU-lg_%2843261171540%29.jpg", name: "McDonalds", rating: 5),
     Restaurant(id: 1, image: "https://upload.wikimedia.org/wikipedia/commons/thumb/c/cc/Burger_King_2020.svg/1280px-Burger_King_2020.svg.png", name: "Burger King", rating: 4),
@@ -113,7 +114,10 @@ struct SwipeView: View {
             .padding(.top)
             .background(LinearGradient(gradient: Gradient(colors: [.secondaryProduct,.secondaryProduct, .primaryBackground]), startPoint: .top, endPoint: .bottom)
                 .opacity(1))
-        }}
+        }.onAppear() {
+            getResturantData()
+        }.navigationBarBackButtonHidden()
+    }
           func likeRestaurant(_ restaurant: Restaurant) {
               if let index = restaurants.firstIndex(where: { $0.id == restaurant.id }) {
                   likedRestaurants.append(restaurants[index])
@@ -132,11 +136,14 @@ struct SwipeView: View {
             restaurants.removeFirst()
         }
         if restaurants.isEmpty {
+            setRankData()
             goToRankView = true
         }
     }
     
     func getResturantData() {
+        print("GETTING RESTURANT DATA ", self.circleCode)
+        
         // Reference to the Firestore database
         let db = Firestore.firestore()
         
@@ -149,22 +156,94 @@ struct SwipeView: View {
                 // Convert the document data to a Dictionary and use it
                 if let data = document.data() {
                     // Use your data here
-                    if let unformattedRestaurants = data["restaurants"] as? [String: Any?] {
+                    print("DOCUMENT DATA", data)
+                    if let unformattedRestaurants = data["restaurants"] as? [[String: Any]] {
+                        
+                        print("UNFORMATTED DATA", unformattedRestaurants)
                         
                         var restaurants: [Restaurant] = []
                         var i = 0
+                        
+//                        print("UNFORMATTED DATA", unformattedRestaurants)
+                        
+                        for restaurant in unformattedRestaurants {
+                            print("UNFORMATTED RESTURANT RUNNING", restaurant)
+                            if let id = restaurant["id"] as? String,
+                                let displayName = restaurant["displayName"] as? String,
+                                let photo = restaurant["photo"] as? String {
 
-                        for (_, value) in unformattedRestaurants {
-                            if let restaurantDict = value as? [String: String], // Cast the value to the expected type
-                               let photo = restaurantDict["photo"],
-                               let id = restaurantDict["id"],
-                               let displayName = restaurantDict["displayName"] {
                                 i += 1
-                                let restaurant = Restaurant(id: i, image: photo, placesId: id, name: displayName)
+                                let restaurant = Restaurant(id: i, image: photo , placesId: id , name: displayName )
+                                print("APPENDING", restaurant)
                                 restaurants.append(restaurant)
                             }
                         }
+                        
+                        print("MADE NEW RESTURANTS: ", restaurants)
+                        
+                        DispatchQueue.main.async {
+                            self.restaurants = restaurants
+                            self.restaurants.removeFirst()
+                            self.restaurants.removeFirst()
+                            self.restaurants.removeFirst()
+                            self.likedRestaurants = []
+                        }
+                    }
+                }
+            } else {
+                // Handle the error or the case where the document does not exist
+                print("Document does not exist or there was an error: \(error?.localizedDescription ?? "")")
+            }
+        }
 
+    }
+    
+    func setRankData() {
+        // Reference to the Firestore database
+        let db = Firestore.firestore()
+        
+        // Reference to the specific document in the "circles" collection
+        let circleRef = db.collection("circles").document(self.circleCode)
+        
+        // Get the document data
+        circleRef.getDocument { (document, error) in
+            if let document = document, document.exists {
+                // Convert the document data to a Dictionary and use it
+                if let data = document.data() {
+                    // Use your data here
+                    if let unformattedRanked = data["ranked"] as? [[String: Any]] {
+                        
+                        let updatedRanked = unformattedRanked.map { restaurantRanked in
+                            
+                            var newRestaurantRanked = [
+                                "id": "",
+                                "rating": "",
+                                "ratingNumber": "",
+                            ]
+                            
+                            var foundRating = false;
+                            if let updatedResturant = likedRestaurants.first(where: { $0.placesId as? String == restaurantRanked["id"] as? String }) {
+                                foundRating = true;
+                            }
+                                
+                                if let ratingString = restaurantRanked["rating"] as? String,
+                                   let ratingNumberString = newRestaurantRanked["ratingNumber"] as? String,
+                                    let rating = Float(ratingString),
+                                    let ratingNumber = Float(ratingNumberString) {
+                                    
+                                    if foundRating {
+                                        let newRating = rating + 1.0
+                                        newRestaurantRanked["rating"] = String(newRating)
+                                    }
+                                                                        
+                                    let newRatingNumber =  ratingNumber + 1.0
+                                    newRestaurantRanked["ratingNumber"] = String(newRatingNumber)
+
+                                }
+                            
+                            return restaurantRanked;
+                        }
+                        circleRef.setData(["rating": updatedRanked])
                     }
                 }
             } else {
