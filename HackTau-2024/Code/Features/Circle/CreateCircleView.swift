@@ -161,6 +161,8 @@ struct CreateCircleView: View {
                     "longitude": String(self.$region.wrappedValue.center.longitude),
          "radius": "1000"] as [String: String]
         
+        print("DATA!!! ", data)
+        
         functions.httpsCallable("createCircle").call(data) { result, error in
             if let error = error as NSError? {
                 print("Error calling createCircle: \(error)")
