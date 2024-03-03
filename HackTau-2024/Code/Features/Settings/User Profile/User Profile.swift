@@ -9,9 +9,9 @@ import Foundation
 import SwiftUI
 
 struct UserProfile {
-    var first_name: String?
-    var last_name: String?
-    var phone_number: String?
-    var username: String?
+    var first_name: String
+    var last_name: String
+    var phone_number: String
+    var username: String
     var profilePicture: UIImage?
 }
