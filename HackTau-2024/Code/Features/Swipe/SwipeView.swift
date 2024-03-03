@@ -19,6 +19,7 @@ struct SwipeView: View {
     
     var body: some View{
         VStack{
+            //Top Stack
             HStack(spacing: 0){
                 Button(action: {}){
                     Image("Settings")
@@ -33,21 +34,15 @@ struct SwipeView: View {
                 }.padding(.bottom, 80)
             }
             .padding(.horizontal)
+            
             Spacer()
-            ZStack{
-                Image("BurgerKing")
-                    .resizable()
-                    .frame(width: 360, height: 360)
-                VStack{
-                    VStack{
-                        HStack{
-                            ForEach(restaurants.indices) { index in
-                               let restaurant = restaurants[index]
-                                
-                        }
-                    }
+            //Middle Stack
+            ZStack {
+                ForEach(restaurants.reversed()) { restaurant in
+                    CardView(restaurant: restaurant)
                 }
-            }.padding(.top, 40)
+            }
+            //button stack
             HStack{
                 Button(action: {}){
                     Image("dismiss_circle")
@@ -67,83 +62,81 @@ struct SwipeView: View {
                 }
                 .padding(.bottom, 150)
             }//Like and dislike button
-            
         }
+        .padding(.top)
+        .background(.primaryBackground)
     }
 }
-     /*@State var activeCardIndex = 0
-     
-     var body: some View {
-     VStack {
-     Spacer()
-     ZStack {
-     ForEach(restaurants.indices) { index in
-     let restaurant = restaurants[index]
-     let cardOffset = CGFloat(index - activeCardIndex) * 20
-     
-     if index == activeCardIndex {
-     AsyncImage(url: URL(string: restaurant.image)) { phase in
-     switch phase {
-     case .empty:
-     ProgressView()
-     case .success(let image):
-     image.resizable()
-     .aspectRatio(contentMode: .fill)
-     .frame(width: UIScreen.main.bounds.width - 40, height: 400)
-     .cornerRadius(15)
-     //.shadow(radius: 10)
-     .offset(x: restaurant.offset)
-     .gesture(DragGesture().onChanged { value in
-     withAnimation {
-     self.restaurants[index].offset = value.translation.width
-     }
-     }.onEnded { value in
-     withAnimation {
-     if value.translation.width < -100 && index < self.restaurants.count - 1 {
-     self.restaurants[index].offset = -((UIScreen.main.bounds.width - 40) + 20)
-     self.activeCardIndex += 1
-     } else if value.translation.width > 100 && index > 0 {
-     self.restaurants[index].offset = (UIScreen.main.bounds.width - 40) + 20
-     self.activeCardIndex += 1  // Change this line to increment activeCardIndex
-     } else {
-     self.restaurants[index].offset = 0
-     }
-     }
-     })
-     case .failure(let error):
-     Image(systemName: "photo")
-     @unknown default:
-     EmptyView()
-     }
-     }
-     .padding(.bottom, cardOffset)
-     .zIndex(Double(-index))
-     
-     Text(restaurant.name)
-     .font(.system(size: 40))
-     .foregroundColor(.black)
-     .frame(maxHeight: 500, alignment: .bottom)
-     }
-     }
-     .padding(.bottom)
-     .cornerRadius(/*@START_MENU_TOKEN@*/8.0/*@END_MENU_TOKEN@*/)
-     }
-     Spacer()
-     if activeCardIndex >= restaurants.count {
-     Text("All out of Restaurants!")
-     .font(.title)
-     .foregroundColor(.black)
-     .padding()
-     }else {
-     EmptyView()
-     }
-     }
-     .padding()
-     }
-     }
-     */
     struct SwipeView_Previews: PreviewProvider {
         static var previews: some View {
             SwipeView()
         }
     }
+
+struct CardView: View {
+    @State var restaurant: SwipeView.Restaurant
+    let restaurantGradient = Gradient(colors: [Color.black.opacity(0), Color.black.opacity(0.5)])
+    var body: some View {
+        ZStack(alignment: .topLeading){
+            Image("McDonalds")//needs to be Image(restaurant.image)
+                .resizable()
+                .frame(width: 360, height: 360)
+                .cornerRadius(10)
+           // LinearGradient(gradient: restaurantGradient, startPoint: .top, endPoint: .bottom)
+            VStack{
+                Text(restaurant.name)
+                    .font(.largeTitle)
+                    .fontWeight(.bold)
+                    .padding(.bottom, 100)
+                    .foregroundColor(.black)
+                    .padding(.top, 0)
+                Spacer()
+            }
+            
+            HStack{
+                Image("like")
+                    .resizable()
+                    .aspectRatio(contentMode: .fit)
+                    .frame(width: 100)
+                    .opacity(Double(restaurant.x))
+                Image("nope")
+                    .resizable()
+                    .aspectRatio(contentMode: .fit)
+                    .frame(width: 100)
+                    .opacity(Double(restaurant.x * -1))
+            }
+        }
+        .padding(.top, 40)
+        .cornerRadius(8)
+        .offset(x: restaurant.x, y: restaurant.y)
+        .rotationEffect(.init(degrees: restaurant.degree))
+        .gesture(
+            DragGesture()
+                .onChanged{ value in
+                    withAnimation(.default){
+                        restaurant.x = value.translation.width
+                        restaurant.y = value.translation.height
+                        restaurant.degree = 7 * (value.translation.width > 0 ? 1 : -1)
+                    }
+                    
+                }
+                .onEnded{ value in
+                    withAnimation(.interpolatingSpring(mass: 1.0, stiffness: 50, damping: 8, initialVelocity: 0)){
+                        switch value.translation.width{
+                        case 0...100:
+                            restaurant.x = 0; restaurant.degree = 0; restaurant.y = 0
+                        case let x where x > 100:
+                            restaurant.x = 500; restaurant.degree = 12
+                        case (-100)...(-1):
+                            restaurant.x = 0; restaurant.degree = 0; restaurant.y = 0;
+                        case let x where x < -100:
+                            restaurant.x = -500; restaurant.degree = -12
+                        default: restaurant.x = 0; restaurant.y = 0
+                        }
+                    }
+                    
+                }
+            
+        )
+    }
+}
