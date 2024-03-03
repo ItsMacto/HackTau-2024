@@ -65,6 +65,7 @@
 		02D359C72B93ABA700EC7F1F /* LoginViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewModel.swift; sourceTree = "<group>"; };
 		02D359C92B93ABA700EC7F1F /* LoginView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
 		02D35A0A2B93BF5300EC7F1F /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		0465C7372B940DBB00FA9AE1 /* FredokaOne-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "FredokaOne-Regular.ttf"; sourceTree = "<group>"; };
 		047990B42B939154006B7E32 /* HackTau-2024.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "HackTau-2024.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		047990B72B939154006B7E32 /* HackTau_2024App.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HackTau_2024App.swift; sourceTree = "<group>"; };
 		047990B92B939154006B7E32 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -169,6 +170,7 @@
 		02D3599B2B93972D00EC7F1F /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				0465C7372B940DBB00FA9AE1 /* FredokaOne-Regular.ttf */,
 			);
 			path = Resources;
 			sourceTree = "<group>";
@@ -508,6 +510,7 @@
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "HackTau-2024/Info.plist";
+				INFOPLIST_KEY_LSApplicationCategoryType = "";
 				INFOPLIST_KEY_NSLocationAlwaysAndWhenInUseUsageDescription = "I want ur kids";
 				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "I want ur kids x2";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
@@ -540,6 +543,7 @@
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "HackTau-2024/Info.plist";
+				INFOPLIST_KEY_LSApplicationCategoryType = "";
 				INFOPLIST_KEY_NSLocationAlwaysAndWhenInUseUsageDescription = "I want ur kids";
 				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "I want ur kids x2";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
