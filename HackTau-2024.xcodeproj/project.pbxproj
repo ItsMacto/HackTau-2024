@@ -61,6 +61,7 @@
 		F35A0BCD2B94111C008C59A0 /* ProfileEditorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F35A0BC82B94111B008C59A0 /* ProfileEditorView.swift */; };
 		F35A0BCE2B94111C008C59A0 /* ImagePickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F35A0BC92B94111B008C59A0 /* ImagePickerView.swift */; };
 		F35A0BCF2B94111C008C59A0 /* ProfileEditorViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F35A0BCA2B94111B008C59A0 /* ProfileEditorViewModel.swift */; };
+		F35A0BD52B941488008C59A0 /* User Profile.swift in Sources */ = {isa = PBXBuildFile; fileRef = F35A0BD42B941488008C59A0 /* User Profile.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -85,6 +86,7 @@
 		F35A0BC82B94111B008C59A0 /* ProfileEditorView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileEditorView.swift; sourceTree = "<group>"; };
 		F35A0BC92B94111B008C59A0 /* ImagePickerView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImagePickerView.swift; sourceTree = "<group>"; };
 		F35A0BCA2B94111B008C59A0 /* ProfileEditorViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileEditorViewModel.swift; sourceTree = "<group>"; };
+		F35A0BD42B941488008C59A0 /* User Profile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "User Profile.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -165,6 +167,7 @@
 		02D359992B93967B00EC7F1F /* Settings */ = {
 			isa = PBXGroup;
 			children = (
+				F35A0BD32B941470008C59A0 /* User Profile */,
 				F35A0BC72B94111B008C59A0 /* ProfileEditor */,
 				F35A0BC62B94111B008C59A0 /* SettingsView.swift */,
 				F35A0BC52B94111B008C59A0 /* SettingsViewModel.swift */,
@@ -270,6 +273,14 @@
 				F35A0BCA2B94111B008C59A0 /* ProfileEditorViewModel.swift */,
 			);
 			path = ProfileEditor;
+			sourceTree = "<group>";
+		};
+		F35A0BD32B941470008C59A0 /* User Profile */ = {
+			isa = PBXGroup;
+			children = (
+				F35A0BD42B941488008C59A0 /* User Profile.swift */,
+			);
+			path = "User Profile";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -398,6 +409,7 @@
 				02D359CB2B93ABA700EC7F1F /* LoginView.swift in Sources */,
 				F35A0BCF2B94111C008C59A0 /* ProfileEditorViewModel.swift in Sources */,
 				047990D02B93A4AB006B7E32 /* MapView.swift in Sources */,
+				F35A0BD52B941488008C59A0 /* User Profile.swift in Sources */,
 				047990C72B93A3B9006B7E32 /* CircleMainView.swift in Sources */,
 				F35A0BCB2B94111C008C59A0 /* SettingsViewModel.swift in Sources */,
 				F35A0BCC2B94111C008C59A0 /* SettingsView.swift in Sources */,
