@@ -18,7 +18,10 @@ import FirebaseFirestore
 import FirebaseFirestoreSwift
 
 struct JoinCircleView: View {
-    @State private var code: String = ""
+    @State private var circleCode: String = ""
+    @State private var failedToJoin: Bool = false
+    @State private var didJoin: Bool = false
+    @State private var members = ["Alice", "Bob", "Charlie"]
 
     var body: some View {
         ZStack {
@@ -34,28 +37,52 @@ struct JoinCircleView: View {
                     .padding()
                     .foregroundColor(.secondaryBackground)
 
-                TextField("Circle Code", text: $code)
+                TextField("Circle Code", text: $circleCode)
                     .padding()
                     .background(Color.white.opacity(0.7))
                     .cornerRadius(15)
                     .padding(.horizontal)
 
-                Button("Join Circle") {
-                    // TODO: Implement join logic here
+                if !didJoin {
+                    Button("Join Circle") {
+                        joinCircle()
+                    }
+                    .padding()
+                    .background(Color.secondaryBackground)
+                    .foregroundColor(.white)
+                    .cornerRadius(10)
+                } else {
+                    Text("Circle Members")
+                        .font(.headline)
+                        .padding(.top, 20)
+                        .bold()
+                    
+                    ForEach(members, id: \.self) { member in
+                        Text(member)
+                            .padding()
+                            .frame(maxWidth: .infinity, alignment: .leading)
+                            .background(Color.white.opacity(0.7))
+                            .cornerRadius(10)
+                    }
                 }
-                .padding()
-                .background(Color.secondaryBackground)
-                .foregroundColor(.white)
-                .cornerRadius(10)
 
+                
                 Spacer() // Pushes everything to the top
             }
             .padding()
             .frame(maxWidth: .infinity)
+            .alert(
+                "Failed to join Circle",
+                isPresented: $failedToJoin
+            ) {
+                Button("OK") {
+                    self.failedToJoin = false
+                }
+            }
         }
     }
     
-    private func createCircle() {
+    private func joinCircle() {
             let functions = Functions.functions()
         
            guard let userID = Auth.auth().currentUser?.uid else {
@@ -64,20 +91,19 @@ struct JoinCircleView: View {
            }
            
             print("USER ID: \(userID)")
-        let data = ["userId": userID] as [String: String]
-        functions.httpsCallable("createCircle").call(data) { result, error in
+        let data = ["userId": userID, "circleId": self.circleCode] as [String: String]
+        functions.httpsCallable("joinCircle").call(data) { result, error in
                if let error = error as NSError? {
                    print("Error calling createCircle: \(error)")
-               } else if let data = result?.data as? [String: Any], // Cast `result?.data` to a dictionary
-                         let circleId = data["circleId"] as? String { // Now you can safely subscript
-                          print("CIRCLE ID: \(circleId)")
+               } else if ((result?.data) != nil) { // Now you can safely subscript
                           DispatchQueue.main.async {
-                              self.circleCode = circleId
-                              observeDocument();
+                              self.didJoin = true
+                              observeDocument()
                           }
                       } else {
                           // Handle the case where `circleId` is not found or `result?.data` cannot be cast to `[String: Any]`
                           print("circleId not found or data is not a dictionary")
+                          self.failedToJoin = true
                       }
            }
        }
