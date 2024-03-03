@@ -39,6 +39,7 @@ struct SwipeView: View {
    
    var body: some View{
        VStack{
+           Color(.primaryAccent)
            //Top Stack
            HStack(spacing: 0){
                Button(action:{}) {
@@ -46,18 +47,26 @@ struct SwipeView: View {
                        .resizable()
                        .shadow(radius: 5)
                        .frame(width: 60, height: 60)
+                       .offset(y: -20)
                }
-               .padding(.bottom)
+               Spacer()
+               
+               Image("MunchLogo")
+                   .resizable()
+                   .shadow(radius: 5)
+                   .frame(width:100, height: 100)
+                   .offset(y: -10)
+                   .padding(.bottom)
                Spacer()
                Button(action: {}){
                    Image("top_left_profile")
                        .resizable()
                        .shadow(radius: 5)
                        .frame(width: 60, height: 60)
+                       .offset(y: -10)
                }.padding(.bottom)
            }
            .padding(.horizontal)
-           
            Spacer()
            //Middle Stack
            ZStack {
@@ -74,7 +83,7 @@ struct SwipeView: View {
                        .shadow(radius: 5)
                        .frame(height: 90)
                }
-
+               
                .padding(.bottom, 150)
                Button(action: likeAction) {
                    Image("like_circle")
