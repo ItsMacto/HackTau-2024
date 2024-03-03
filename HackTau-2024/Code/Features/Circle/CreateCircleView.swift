@@ -50,8 +50,10 @@ struct CreateCircleView: View {
                             }
                 }
             
-                Text("Showing restaurants for: \(showingCity)")
-                    .foregroundColor(Color.primaryBackground)
+                Text("Showing restaurants for: ")
+                    .foregroundColor(Color.primaryBackground) +
+                Text(showingCity)
+                    .foregroundColor(.primaryProduct).bold()
                 
                 
                 HStack {
