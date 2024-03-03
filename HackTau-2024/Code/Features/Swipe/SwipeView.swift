@@ -22,17 +22,18 @@ struct SwipeView: View {
       VStack{
           //Top Stack
           ZStack{
-              Color("primaryAccentColor")
+              Color(.secondaryProduct)
                   .frame(width:400, height: 200)
                   .offset(y:-75)
               HStack(spacing: 0){
                   Button(action:{}) {
-                      Image("Settings")
+                      Image(systemName: "gearshape.fill")
                           .resizable()
                           .shadow(radius: 5)
                           .frame(width: 60, height: 60)
                           .offset(y: -20)
                           .offset(x: 20)
+                          .foregroundColor(.secondaryBackground)
                   }
                   Spacer()
                   
@@ -44,13 +45,15 @@ struct SwipeView: View {
                       .padding(.bottom)
                   Spacer()
                   Button(action: {}){
-                      Image("top_left_profile")
+                      Image(systemName: "person.crop.circle.fill")
                           .resizable()
                           .shadow(radius: 5)
                           .frame(width: 55, height: 55)
                           .offset(y: -10)
                           .offset(x: -25)
-                  }.padding(.bottom)
+                  }
+                    .padding(.bottom)
+                      .foregroundColor(.secondaryBackground)
               }
           }
           
@@ -63,7 +66,7 @@ struct SwipeView: View {
               }.zIndex(1.0)
           }
           //button stack
-          HStack{
+          HStack(alignment: .center, spacing: 70){
               Button(action: {}){
                   Image("dismiss_circle")
                       .resizable()
@@ -84,7 +87,7 @@ struct SwipeView: View {
           }//Like and dislike button
       }
       .padding(.top)
-      .background(.primaryBackground)
+      .background(.secondaryProduct)
   }
 }
   struct SwipeView_Previews: PreviewProvider {

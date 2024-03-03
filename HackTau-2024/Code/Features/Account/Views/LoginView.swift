@@ -37,7 +37,7 @@ struct LoginView: View {
     @Binding var isLoggedIn: Bool
 
     var body: some View {
-            VStack(spacing: 20) {
+        VStack(alignment: .center, spacing: 20) {
                 Spacer()
                 
                 Text("Munch")
