@@ -12,7 +12,7 @@ struct SwipeView: View {
      var rating: Int = 0
  }
   @State private var gestureEnabled = true
-
+    @State private var goToRankView = false
   @State var likedRestaurants: [Restaurant] = []
   @State var restaurants = [
     Restaurant(id: 0, image: "https://upload.wikimedia.org/wikipedia/commons/2/25/New-McDonald-HU-lg_%2843261171540%29.jpg", name: "McDonalds", rating: 5),
@@ -103,6 +103,9 @@ struct SwipeView: View {
                     }
                     .padding(.bottom, 150)
                 }//Like and dislike button
+                NavigationLink(destination: RankingView(), isActive: $goToRankView) {
+                    EmptyView()
+                }
             }
             .padding(.top)
             .background(.secondaryProduct)
@@ -113,17 +116,20 @@ struct SwipeView: View {
               }
           
         }
-      
-}
-func swipeCard(direction: SwipeDirection, restaurants: inout [SwipeView.Restaurant], onLiked: (SwipeView.Restaurant) -> Void) {
-    withAnimation {
-        if direction == .right {
-            // Call onLiked closure with the first restaurant
-            if let firstRestaurant = restaurants.first {
-                onLiked(firstRestaurant)
+    
+    func swipeCard(direction: SwipeDirection, restaurants: inout [SwipeView.Restaurant], onLiked: (SwipeView.Restaurant) -> Void) {
+        withAnimation {
+            if direction == .right {
+                // Call onLiked closure with the first restaurant
+                if let firstRestaurant = restaurants.first {
+                    onLiked(firstRestaurant)
+                }
             }
+            restaurants.removeFirst()
         }
-        restaurants.removeFirst()
+        if restaurants.isEmpty {
+            goToRankView = true
+        }
     }
 }
 
