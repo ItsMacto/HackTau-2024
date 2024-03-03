@@ -63,6 +63,7 @@
 		F35A0BCE2B94111C008C59A0 /* ImagePickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F35A0BC92B94111B008C59A0 /* ImagePickerView.swift */; };
 		F35A0BCF2B94111C008C59A0 /* ProfileEditorViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F35A0BCA2B94111B008C59A0 /* ProfileEditorViewModel.swift */; };
 		F35A0BD52B941488008C59A0 /* User Profile.swift in Sources */ = {isa = PBXBuildFile; fileRef = F35A0BD42B941488008C59A0 /* User Profile.swift */; };
+		F35A0BD72B943976008C59A0 /* Splash Screeen View.swift in Sources */ = {isa = PBXBuildFile; fileRef = F35A0BD62B943975008C59A0 /* Splash Screeen View.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -88,6 +89,7 @@
 		F35A0BC92B94111B008C59A0 /* ImagePickerView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImagePickerView.swift; sourceTree = "<group>"; };
 		F35A0BCA2B94111B008C59A0 /* ProfileEditorViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileEditorViewModel.swift; sourceTree = "<group>"; };
 		F35A0BD42B941488008C59A0 /* User Profile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "User Profile.swift"; sourceTree = "<group>"; };
+		F35A0BD62B943975008C59A0 /* Splash Screeen View.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Splash Screeen View.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -240,6 +242,7 @@
 				02D3599A2B93971400EC7F1F /* Code */,
 				047990B72B939154006B7E32 /* HackTau_2024App.swift */,
 				047990B92B939154006B7E32 /* ContentView.swift */,
+				F35A0BD62B943975008C59A0 /* Splash Screeen View.swift */,
 				02D35A0A2B93BF5300EC7F1F /* GoogleService-Info.plist */,
 				047990BB2B939155006B7E32 /* Assets.xcassets */,
 				047990BD2B939155006B7E32 /* Preview Content */,
@@ -405,6 +408,7 @@
 				F35A0BCE2B94111C008C59A0 /* ImagePickerView.swift in Sources */,
 				047990C92B93A3F1006B7E32 /* JoinCircleView.swift in Sources */,
 				02D359A12B9398DB00EC7F1F /* SwipeView.swift in Sources */,
+				F35A0BD72B943976008C59A0 /* Splash Screeen View.swift in Sources */,
 				02D359CA2B93ABA700EC7F1F /* LoginViewModel.swift in Sources */,
 				047990BA2B939154006B7E32 /* ContentView.swift in Sources */,
 				047990B82B939154006B7E32 /* HackTau_2024App.swift in Sources */,
@@ -548,7 +552,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"HackTau-2024/Preview Content\"";
-				DEVELOPMENT_TEAM = 4J9NA3X7D8;
+				DEVELOPMENT_TEAM = UZD6KBY5BM;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "HackTau-2024/Info.plist";
@@ -581,7 +585,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"HackTau-2024/Preview Content\"";
-				DEVELOPMENT_TEAM = 4J9NA3X7D8;
+				DEVELOPMENT_TEAM = UZD6KBY5BM;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "HackTau-2024/Info.plist";
