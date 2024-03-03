@@ -48,20 +48,15 @@ struct SwipeView: View {
                       .padding(.bottom)
                   Spacer()
                   NavigationLink(destination: SettingsView()) {
-                          Image(systemName: "gearshape.fill")
-                              .resizable()
-                              .shadow(radius: 5)
-                              .frame(width: 60, height: 60)
-                              .offset(y: -20)
-                              .offset(x: 20)
-                              .foregroundColor(.secondaryBackground)
-                      }
                       Image(systemName: "person.crop.circle.fill")
                           .resizable()
                           .shadow(radius: 5)
-                          .frame(width: 55, height: 55)
-                          .offset(y: -10)
+                          .frame(width: 60, height: 60)
+                          .offset(y: -20)
                           .offset(x: -25)
+                          .foregroundColor(.secondaryBackground)
+                      }
+                      
                   }
                     .padding(.bottom)
                       .foregroundColor(.secondaryBackground)
