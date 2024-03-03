@@ -9,9 +9,11 @@ struct SwipeView: View {
      var x: CGFloat = 0.0
      var y: CGFloat = 0.0
      var degree: Double = 0.0
+     var isLiked: Bool = false
  }
   @State private var gestureEnabled = true
 
+  @State var likedRestaurants: [Restaurant] = []
   @State var restaurants = [
       Restaurant(id: 0, image: "https://upload.wikimedia.org/wikipedia/commons/2/25/New-McDonald-HU-lg_%2843261171540%29.jpg", name: "McDonalds"),
       Restaurant(id: 1, image: "https://upload.wikimedia.org/wikipedia/commons/thumb/c/cc/Burger_King_2020.svg/1280px-Burger_King_2020.svg.png", name: "Burger King"),
@@ -62,12 +64,19 @@ struct SwipeView: View {
           //Middle Stack
           ZStack {
               ForEach(restaurants.reversed()) { restaurant in
-                  CardView(restaurant: restaurant)
+                  CardView(restaurant: restaurant, onLike: {
+                      self.likeRestaurant(restaurant)
+                  })
               }.zIndex(1.0)
           }
           //button stack
           HStack(alignment: .center, spacing: 70){
-              Button(action: {}){
+              Button(action: {
+                  withAnimation {
+                      swipeCard(direction: .right, restaurants: &self.restaurants) { restaurant in
+                      }
+                }
+              }){
                   Image("dismiss_circle")
                       .resizable()
                       .aspectRatio(contentMode: .fit)
@@ -76,7 +85,15 @@ struct SwipeView: View {
               }
               
               .padding(.bottom, 150)
-              Button(action: {}) {
+              Button(action: {
+                  withAnimation {
+                      swipeCard(direction: .right, restaurants: &self.restaurants) { restaurant in
+                          // Handle liked restaurant
+                          self.likedRestaurants.append(restaurant)
+                          print("Liked Restaurant ID: \(restaurant.id)")
+                      }
+                  }
+              }){
                   Image("like_circle")
                       .resizable()
                       .aspectRatio(contentMode: .fit)
@@ -89,21 +106,27 @@ struct SwipeView: View {
       .padding(.top)
       .background(.secondaryProduct)
   }
-}
-func swipeCard(direction: SwipeDirection, restaurants: inout [SwipeView.Restaurant]) {
-  withAnimation {
-    if direction == .left {
-      restaurants.removeFirst() // Modify the original array
-    } else {
-      restaurants.removeFirst()
+    func likeRestaurant(_ restaurant: Restaurant) {
+        if let index = restaurants.firstIndex(where: { $0.id == restaurant.id }) {
+            likedRestaurants.append(restaurants[index])
+        }
     }
-  }
 }
-// ... your existing code
+func swipeCard(direction: SwipeDirection, restaurants: inout [SwipeView.Restaurant], onLiked: (SwipeView.Restaurant) -> Void) {
+    withAnimation {
+        if direction == .right {
+            // Call onLiked closure with the first restaurant
+            if let firstRestaurant = restaurants.first {
+                onLiked(firstRestaurant)
+            }
+        }
+        restaurants.removeFirst()
+    }
+}
 
 enum SwipeDirection {
- case left
- case right
+    case left
+    case right
 }
  struct SwipeView_Previews: PreviewProvider {
      static var previews: some View {
@@ -114,6 +137,7 @@ enum SwipeDirection {
 struct CardView: View {
  @State var restaurant: SwipeView.Restaurant
  let restaurantGradient = Gradient(colors: [Color.black.opacity(0), Color.black.opacity(0.5)])
+    var onLike: () -> Void
  var body: some View {
      ZStack(alignment: .topLeading){
          Image("McDonalds")//needs to be Image(restaurant.image)
@@ -139,6 +163,9 @@ struct CardView: View {
                  .aspectRatio(contentMode: .fit)
                  .frame(width: 150)
                  .opacity(Double(restaurant.x/10 - 1))
+                 .onTapGesture {
+                     self.onLike()
+                 }
              Image("nope")
                  .resizable()
                  .aspectRatio(contentMode: .fit)
@@ -167,11 +194,11 @@ struct CardView: View {
                      case 0...100:
                          restaurant.x = 0; restaurant.degree = 0; restaurant.y = 0
                      case let x where x > 100:
-                         restaurant.x = 500; restaurant.degree = 12
+                         restaurant.x = 500; restaurant.degree = 12;
                      case (-100)...(-1):
                          restaurant.x = 0; restaurant.degree = 0; restaurant.y = 0;
                      case let x where x < -100:
-                         restaurant.x = -500; restaurant.degree = -12
+                         restaurant.x = -500; restaurant.degree = -12;
                      default: restaurant.x = 0; restaurant.y = 0
                      }
                  }
