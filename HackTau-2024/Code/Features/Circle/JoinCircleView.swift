@@ -67,7 +67,7 @@ struct JoinCircleView: View {
                     }
                 }
                 
-                NavigationLink(destination: SwipeView(), isActive: $goToSwipeView) {
+                NavigationLink(destination: SwipeView(circleCode: self.circleCode), isActive: $goToSwipeView) {
                     EmptyView()
                 }
                 Spacer() // Pushes everything to the top

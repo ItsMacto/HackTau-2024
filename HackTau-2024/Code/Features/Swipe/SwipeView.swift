@@ -1,9 +1,11 @@
 import SwiftUI
+import FirebaseFirestore
 
 struct SwipeView: View {
  struct Restaurant: Identifiable {
      var id: Int
      var image: String
+     var placesId: String = ""
      var name: String
      var offset: CGFloat = 0
      var x: CGFloat = 0.0
@@ -11,6 +13,7 @@ struct SwipeView: View {
      var degree: Double = 0.0
      var rating: Int = 0
  }
+    @State var circleCode: String
   @State private var gestureEnabled = true
     @State private var goToRankView = false
   @State var likedRestaurants: [Restaurant] = []
@@ -103,7 +106,7 @@ struct SwipeView: View {
                     }
                     .padding(.bottom, 150)
                 }//Like and dislike button
-                NavigationLink(destination: RankingView(), isActive: $goToRankView) {
+                NavigationLink(destination: RankingView(circleCode: self.circleCode), isActive: $goToRankView) {
                     EmptyView()
                 }
             }
@@ -131,6 +134,45 @@ struct SwipeView: View {
             goToRankView = true
         }
     }
+    
+    func getResturantData() {
+        // Reference to the Firestore database
+        let db = Firestore.firestore()
+        
+        // Reference to the specific document in the "circles" collection
+        let circleRef = db.collection("circles").document(self.circleCode)
+        
+        // Get the document data
+        circleRef.getDocument { (document, error) in
+            if let document = document, document.exists {
+                // Convert the document data to a Dictionary and use it
+                if let data = document.data() {
+                    // Use your data here
+                    if let unformattedRestaurants = data["restaurants"] as? [String: Any?] {
+                        
+                        var restaurants: [Restaurant] = []
+                        var i = 0
+
+                        for (_, value) in unformattedRestaurants {
+                            if let restaurantDict = value as? [String: String], // Cast the value to the expected type
+                               let photo = restaurantDict["photo"],
+                               let id = restaurantDict["id"],
+                               let displayName = restaurantDict["displayName"] {
+                                i += 1
+                                let restaurant = Restaurant(id: i, image: photo, placesId: id, name: displayName)
+                                restaurants.append(restaurant)
+                            }
+                        }
+
+                    }
+                }
+            } else {
+                // Handle the error or the case where the document does not exist
+                print("Document does not exist or there was an error: \(error?.localizedDescription ?? "")")
+            }
+        }
+
+    }
 }
 
 enum SwipeDirection {
@@ -139,7 +181,7 @@ enum SwipeDirection {
 }
  struct SwipeView_Previews: PreviewProvider {
      static var previews: some View {
-         SwipeView()
+         SwipeView(circleCode: "vtz4x")
      }
  }
 
@@ -149,11 +191,15 @@ struct CardView: View {
     var onLike: () -> Void
  var body: some View {
      ZStack(alignment: .topLeading){
-         Image("McDonalds")//needs to be Image(restaurant.image)
-             .resizable()
-             .frame(width: 360, height: 360)
-             .cornerRadius(10)
-             .padding(.bottom)
+         AsyncImage(url: URL(string: restaurant.image)) { image in
+             image.resizable()
+         } placeholder: {
+             ProgressView()
+         }
+         .frame(width: 360, height: 360)
+         .cornerRadius(10)
+         .padding(.bottom)
+         
             // .offset(x: 17)
         //LinearGradient(gradient: restaurantGradient, startPoint: .top, endPoint: .bottom)
          VStack(){

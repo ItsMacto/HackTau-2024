@@ -10,6 +10,7 @@ struct RankedRestaurant: Identifiable {
 }
 
 struct RankingView: View {
+    @State var circleCode: String
     @State var rankedRestaurants = [
         RankedRestaurant(rank: 1, image: "https://upload.wikimedia.org/wikipedia/commons/2/25/New-McDonald-HU-lg_%2843261171540%29.jpg", name: "McDonald's"),
         RankedRestaurant(rank: 2, image: "https://upload.wikimedia.org/wikipedia/commons/thumb/c/cc/Burger_King_2020.svg/1280px-Burger_King_2020.svg.png", name: "Burger King"),
@@ -95,11 +96,11 @@ struct RankingView: View {
                 return firstRank < secondRank
             }
             
-            let rankedResturants = sortedRanked.map { resturant in
-                let id = reasturant["id"]
-                let resturant = restaurants.first(where: { $0["id"] as? String == id })
+            let rankedResturants = sortedRanked.map { restaurant in
+                let id = restaurant["id"]
+                let resturant = restaurants.first(where: { $0["id"] as? String == id as? String })
                 
-                return RankedRestaurant(rank: 0, image: resturant["photo"], name: resturant["displayName"])
+                return RankedRestaurant(rank: 0, image: restaurant["photo"] as! String, name: restaurant["displayName"] as! String)
             }
 
 
@@ -112,7 +113,7 @@ struct RankingView: View {
 
 struct RankingView_Previews: PreviewProvider {
     static var previews: some View {
-        RankingView()
+        RankingView(circleCode: "sbjli")
     }
 }
 

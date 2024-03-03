@@ -103,7 +103,7 @@ struct CreateCircleView: View {
                 .background(Color.secondaryBackground)
                 .foregroundColor(.white)
                 .cornerRadius(10)
-                NavigationLink(destination: SwipeView(), isActive: $goToSwipeView) {
+                NavigationLink(destination: SwipeView(circleCode: self.circleCode), isActive: $goToSwipeView) {
                     EmptyView()
                 }
 
@@ -160,8 +160,6 @@ struct CreateCircleView: View {
                     "latitude": String(self.$region.wrappedValue.center.latitude),
                     "longitude": String(self.$region.wrappedValue.center.longitude),
          "radius": "1000"] as [String: String]
-        
-        print("DATA!!! ", data)
         
         functions.httpsCallable("createCircle").call(data) { result, error in
             if let error = error as NSError? {
