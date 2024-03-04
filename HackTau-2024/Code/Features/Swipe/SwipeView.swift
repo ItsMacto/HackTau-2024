@@ -244,7 +244,7 @@ struct SwipeView: View {
                             
                             return restaurantRanked;
                         }
-                        circleRef.setData(["ranked": updatedRanked])
+                        circleRef.updateData(["ranked": updatedRanked])
                     }
                 }
             } else {
